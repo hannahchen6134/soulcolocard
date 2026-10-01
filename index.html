@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>初心色譜｜自我覺察牌卡 SAMPLE</title>
+  <title>SOUL COLOR｜內在色彩卡 SAMPLE</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%235a3c28'/%3E%3Cpath d='M32 13c2.6 9.5 6.7 13.6 16 16-9.3 2.4-13.4 6.5-16 16-2.6-9.5-6.7-13.6-16-16 9.3-2.4 13.4-6.5 16-16Z' fill='%23ead6ad'/%3E%3C/svg%3E">
   <style>
     :root{--paper:#f4efe7;--paper2:#ebe2d6;--ink:#2c251f;--muted:#786c61;--gold:#a67b42;--coffee:#5a3c28;--coffee-hover:#704b31;--night:#0d0a07;--line:rgba(75,57,40,.16);--focus:#8d6028}
@@ -29,8 +29,10 @@
     .primary:hover{background:var(--coffee-hover)}.primary:hover,.secondary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(90,60,40,.2)}.primary:disabled{opacity:.45;cursor:default;transform:none;box-shadow:none}button:not(.card-button):focus-visible,textarea:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid rgba(141,96,40,.46);outline-offset:4px}.card-button:focus-visible{outline:none}.card-button:focus-visible .face{box-shadow:0 0 0 3px rgba(184,144,74,.62),0 18px 48px rgba(0,0,0,.38)}
     .deck-stage{display:grid;place-items:center;min-height:480px;position:relative}
     .soft-orbit{position:absolute;width:min(470px,44vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(192,153,112,.24),rgba(192,153,112,0) 68%);animation:orbit 16s ease-in-out infinite}
-    .deck{--shuffle-x:clamp(48px,6vw,70px);width:220px;height:336px;position:relative;perspective:900px;transform-style:preserve-3d;filter:drop-shadow(0 22px 18px rgba(47,30,19,.18)) drop-shadow(0 4px 4px rgba(34,21,13,.18))}.deck::before,.deck::after{content:"";position:absolute;inset:0;border-radius:18px;border:1px solid rgba(245,224,189,.24);box-shadow:inset 0 1px rgba(255,255,255,.12),inset 0 -18px 28px rgba(0,0,0,.2),0 8px 16px rgba(43,28,18,.12);will-change:transform}.deck::before{background:linear-gradient(150deg,#75675b,#4f453e);transform:translate(-18px,16px) rotate(-6deg) scale(.986);opacity:.92;animation:shuffleLeft 12s .35s cubic-bezier(.45,.05,.25,1) infinite}.deck::after{background:linear-gradient(150deg,#5c5047,#332a24);transform:translate(18px,13px) rotate(6deg) scale(.986);opacity:.88;animation:shuffleRight 12s .65s cubic-bezier(.45,.05,.25,1) infinite}
-    .deck-face{position:absolute;inset:0;z-index:2;border-radius:18px;background:radial-gradient(circle at 46% 34%,rgba(244,218,175,.28),transparent 29%),linear-gradient(118deg,rgba(255,255,255,.08),transparent 34%),linear-gradient(152deg,#211a16 4%,#493a2f 62%,#2b211b);border:1px solid rgba(248,226,188,.3);box-shadow:0 3px 5px rgba(32,20,12,.22),0 18px 34px rgba(43,28,18,.18),inset 0 1px rgba(255,255,255,.18),inset 0 -22px 34px rgba(16,10,7,.22);display:grid;place-items:center;color:#e8d6b7;text-align:center;transform:translateZ(12px);overflow:hidden;will-change:transform;animation:shuffleFace 12s .35s cubic-bezier(.45,.05,.25,1) infinite}.deck-face::before{content:"";position:absolute;inset:16px;border:1px solid rgba(232,214,183,.4);border-radius:11px;box-shadow:inset 0 0 20px rgba(238,216,177,.035)}.deck-face::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.11;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.25'/%3E%3C/svg%3E"),linear-gradient(112deg,transparent 35%,rgba(255,244,220,.24) 49%,transparent 62%);mix-blend-mode:soft-light}.deck-mark{position:relative;z-index:1;font-size:36px;font-weight:300;text-shadow:0 2px 18px rgba(0,0,0,.28)}.deck-mark small{display:block;font:8px/1.8 Georgia,serif;letter-spacing:.22em;margin-top:12px}
+    .deck{--shuffle-x:clamp(48px,6vw,70px);width:220px;height:336px;position:relative;perspective:900px;transform-style:preserve-3d;filter:drop-shadow(0 28px 22px rgba(47,30,19,.2)) drop-shadow(0 5px 5px rgba(34,21,13,.2))}.deck::before,.deck::after{content:"";position:absolute;inset:0;border-radius:18px;border:1px solid rgba(245,224,189,.24);box-shadow:inset 0 1px rgba(255,255,255,.16),inset 1px 0 rgba(255,255,255,.07),inset 0 -20px 30px rgba(0,0,0,.22),0 9px 18px rgba(43,28,18,.14);will-change:transform}.deck::before{background:radial-gradient(circle at 36% 24%,rgba(255,239,211,.1),transparent 32%),linear-gradient(150deg,#786b5f,#4b413a);transform:translate(-18px,16px) rotate(-6deg) scale(.986);opacity:.92;animation:shuffleLeft 12s .35s cubic-bezier(.45,.05,.25,1) infinite}.deck::after{background:radial-gradient(circle at 68% 22%,rgba(255,239,211,.08),transparent 30%),linear-gradient(150deg,#62554c,#302823);transform:translate(18px,13px) rotate(6deg) scale(.986);opacity:.88;animation:shuffleRight 12s .65s cubic-bezier(.45,.05,.25,1) infinite}
+    .deck-face{position:absolute;inset:0;z-index:2;border-radius:18px;background:radial-gradient(ellipse 72% 48% at 47% 31%,rgba(246,219,174,.3),transparent 54%),radial-gradient(circle at 82% 12%,rgba(255,247,226,.08),transparent 27%),linear-gradient(118deg,rgba(255,255,255,.1),transparent 31%),linear-gradient(152deg,#1e1714 3%,#4a392e 58%,#281e19);border:1px solid rgba(248,226,188,.42);box-shadow:0 1px 0 rgba(255,255,255,.18),0 4px 9px rgba(32,20,12,.24),0 24px 42px rgba(43,28,18,.2),inset 1px 1px rgba(255,255,255,.13),inset -1px -1px rgba(18,11,8,.42),inset 0 -24px 38px rgba(16,10,7,.2);display:grid;place-items:center;color:#e8d6b7;text-align:center;transform:translateZ(12px);overflow:hidden;will-change:transform;animation:shuffleFace 12s .35s cubic-bezier(.45,.05,.25,1) infinite}.deck-face::before{content:"";position:absolute;inset:15px;border:1px solid rgba(232,214,183,.46);border-radius:11px;box-shadow:0 0 0 1px rgba(44,31,23,.28),inset 0 1px rgba(255,248,230,.08),inset 0 0 22px rgba(238,216,177,.04)}.deck-face::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.25'/%3E%3C/svg%3E"),linear-gradient(112deg,transparent 31%,rgba(255,244,220,.28) 47%,transparent 61%),repeating-linear-gradient(88deg,rgba(255,255,255,.025) 0 1px,transparent 1px 5px);background-size:160px 160px,100% 100%,100% 100%;mix-blend-mode:soft-light}.deck-mark{position:relative;z-index:1;font-size:36px;font-weight:300;text-shadow:0 2px 18px rgba(0,0,0,.28)}.deck-mark small{display:block;font:8px/1.8 Georgia,serif;letter-spacing:.22em;margin-top:12px}
+    .deck-star{display:block;line-height:1;color:#ead9ba;background:linear-gradient(145deg,#fff3d4 8%,#d4b986 42%,#f4dfb4 62%,#b39465 96%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:starGlimmer 12s 1.2s ease-in-out infinite}
+    #welcome.active .deck-mark small{font-family:"Segoe Script","Brush Script MT","Lucida Handwriting",cursive;font-size:10px;font-weight:400;line-height:1.7;letter-spacing:.16em;width:max-content;max-width:100%;margin:10px auto 0;padding-left:.16em;opacity:.9;text-shadow:0 1px 10px rgba(232,214,183,.2);transform:rotate(-1deg);transform-origin:left center;animation:handwrittenReveal 2.6s .75s cubic-bezier(.22,.72,.2,1) both}
     .welcome-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
     #draw{grid-template-columns:minmax(360px,1.12fr) minmax(300px,.88fr);align-items:stretch}
     .visual{background:var(--night);min-height:540px;position:relative;overflow:hidden;display:grid;place-items:center}
@@ -105,6 +107,8 @@
     @keyframes shuffleLeft{0%,6%,48%,100%{transform:translate(-18px,16px) rotate(-6deg) scale(.986)}18%{transform:translate(calc(-1 * var(--shuffle-x)),3px) rotate(-9deg) scale(.986)}32%{transform:translate(18px,19px) rotate(5deg) scale(.978)}}
     @keyframes shuffleRight{0%,16%,58%,100%{transform:translate(18px,13px) rotate(6deg) scale(.986)}28%{transform:translate(var(--shuffle-x),2px) rotate(9deg) scale(.986)}42%{transform:translate(-17px,20px) rotate(-5deg) scale(.978)}}
     @keyframes shuffleFace{0%,8%,50%,100%{transform:translateZ(12px) translateX(0)}20%{transform:translateZ(12px) translateX(4px)}34%{transform:translateZ(12px) translateX(-4px)}}
+    @keyframes handwrittenReveal{0%{opacity:0;clip-path:inset(0 100% 0 0);filter:blur(1.4px)}26%{opacity:.46}100%{opacity:1;clip-path:inset(0 0 0 0);filter:blur(0)}}
+    @keyframes starGlimmer{0%,38%,100%{opacity:.82;text-shadow:0 2px 14px rgba(232,214,183,.18)}48%{opacity:1;text-shadow:0 0 8px rgba(255,241,206,.44),0 0 22px rgba(232,214,183,.28)}57%{opacity:.88;text-shadow:0 2px 16px rgba(232,214,183,.2)}}
     #welcome.active .intro>h1{animation:editorialRise 1s .12s cubic-bezier(.22,.7,.2,1) both}
     #welcome.active .intro>.lead{animation:editorialRise .95s .25s ease-out both}
     #welcome.active .welcome-actions{animation:editorialRise .9s .38s ease-out both}
@@ -124,7 +128,7 @@
     @keyframes welcomeGlowD{50%{transform:translate(8%,7%) scale(1.05);opacity:.58}}
     @media(max-width:520px){
       header{height:62px;padding:0 18px}.brand{font-size:11px;line-height:1.35}.brand small{font-size:7.5px;margin-top:2px}.deck-count{font-size:7.2px;letter-spacing:.075em;text-align:right;max-width:142px}
-      .screen{min-height:calc(100vh - 126px)}#welcome{padding:30px 32px 42px}.deck-stage{min-height:226px}.deck{width:124px;height:190px}.deck-face::before{inset:12px}.deck-mark{font-size:29px}.deck-mark small{font-size:6.8px;letter-spacing:.23em;margin-top:9px}
+      .screen{min-height:calc(100vh - 126px)}#welcome{padding:30px 32px 42px}.deck-stage{min-height:226px}.deck{width:124px;height:190px}.deck-face::before{inset:12px}.deck-mark{font-size:29px}#welcome.active .deck-mark small{font-size:8.2px;letter-spacing:.14em;margin-top:8px}
       .eyebrow{font-size:8px;line-height:1.5;letter-spacing:.13em;margin-bottom:13px}h1{font-size:24px;line-height:1.5;letter-spacing:.045em;margin-bottom:14px}.lead{font-size:12.8px;line-height:1.9;margin-bottom:22px;max-width:30em}
       .primary,.secondary{min-height:44px;font-size:12.5px;line-height:1.45;letter-spacing:.075em}.primary{padding:10px 19px}.welcome-actions{gap:9px}.welcome-actions .secondary{font-size:11.5px}
       .visual{min-height:430px}.visual-status{left:22px;top:21px;font-size:8px}.card-button{width:min(202px,calc(100% - 90px))}.card-title strong{font-size:15.5px;letter-spacing:.075em}.card-title em{font-size:6.8px;letter-spacing:.08em}.mix-labels{bottom:15px}.mix-label strong{font-size:11px;letter-spacing:.09em}.mix-label span{font-size:6.8px;margin-top:3px}
@@ -140,7 +144,7 @@
 <body>
   <div class="app" data-screen="welcome">
     <div class="ambient" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i></div>
-    <header><div class="brand">初心色譜<small>SOUL COLOR</small></div><div class="deck-count">105 COLORS</div></header>
+    <header><div class="brand">內在色彩卡<small>SOUL COLOR</small></div><div class="deck-count">105 COLORS</div></header>
     <main>
       <section class="screen active" id="welcome">
         <div class="intro">
@@ -148,7 +152,7 @@
           <p class="lead">牌卡不替你定義情緒，只陪你靠近此刻的感受。</p>
           <div class="welcome-actions"><button class="primary" id="startDraw">抽一張色票</button><button class="secondary" id="openOverview">瀏覽全部色票</button></div>
         </div>
-        <div class="deck-stage" aria-hidden="true"><div class="soft-orbit"></div><div class="deck"><div class="deck-face"><div class="deck-mark">✦<small>SOUL COLOR</small></div></div></div></div>
+        <div class="deck-stage" aria-hidden="true"><div class="soft-orbit"></div><div class="deck"><div class="deck-face"><div class="deck-mark"><span class="deck-star">✦</span><small>SOUL COLOR</small></div></div></div></div>
       </section>
 
       <section class="screen" id="draw" aria-labelledby="cardTitle">
@@ -158,7 +162,7 @@
           <button class="card-button" id="cardButton" aria-label="翻開牌卡">
             <span class="flip-card"><span class="face back"><span>✦</span><small>CLICK TO REVEAL</small></span><span class="face front" id="cardFront">
               <span class="card-band"><span class="card-band-bg" id="cardBandBg"></span><span class="card-band-tex" id="cardTexture"></span><span class="card-band-grad"></span><span class="card-band-glass"></span><span class="card-hex" id="frontHex"></span><span class="card-title"><strong id="frontZh"></strong><em id="frontEn"></em></span></span>
-              <span class="card-body"><span class="card-label">SOUL COLOR</span><span class="card-footer"><span>初心色譜</span><i id="frontDate"></i></span></span>
+              <span class="card-body"><span class="card-label">SOUL COLOR</span><span class="card-footer"><span>內在色彩卡</span><i id="frontDate"></i></span></span>
             </span></span>
           </button>
           <div class="ritual-stack hidden" id="ritualStack" aria-label="本次混色色票"></div>
@@ -179,7 +183,7 @@
       <section class="screen" id="overview" aria-labelledby="overviewTitle">
         <div class="overview-wrap">
           <div class="overview-head">
-            <div><div class="eyebrow">THE COMPLETE ARCHIVE · 105 COLORS</div><h2 id="overviewTitle">105 張牌卡完整總覽</h2><p class="overview-copy">這裡直接沿用正式初心色譜的 105 色資料，沒有另外替牌卡命名。你可以搜尋或依色系篩選；點選任何色票即可放大查看原故事與提問。</p></div>
+            <div><div class="eyebrow">THE COMPLETE ARCHIVE · 105 COLORS</div><h2 id="overviewTitle">105 張牌卡完整總覽</h2><p class="overview-copy">這裡直接沿用原始 105 色資料，沒有另外替牌卡命名。你可以搜尋或依色系篩選；點選任何色票即可放大查看原故事與提問。</p></div>
             <button class="secondary" id="overviewBackTop">回到抽牌</button>
           </div>
           <div class="overview-tools"><label class="live" for="paletteSearch">搜尋牌卡名稱或色碼</label><input class="palette-search" id="paletteSearch" type="search" placeholder="搜尋中文名、英文名或 HEX 色碼"><div class="filter-row" id="filterRow" aria-label="依色系篩選"><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="warm">暖色</button><button class="filter-chip" data-filter="green">綠色</button><button class="filter-chip" data-filter="blue">藍色</button><button class="filter-chip" data-filter="purple">紫色</button><button class="filter-chip" data-filter="neutral">中性色</button></div><div class="result-count" id="paletteCount">105 / 105 CARDS</div></div>
@@ -199,7 +203,7 @@
           <p class="complete-question" id="completeQuestion"></p>
           <div class="complete-actions"><button class="primary" id="downloadCard">儲存本次圖卡</button><button class="secondary" id="copySummary">複製文字</button><button class="secondary" id="summaryOverview">查看 105 色</button><button class="text-action" id="summaryRestart">重新洗牌</button></div>
           <div class="copy-status" id="copyStatus" aria-live="polite"></div>
-          <div class="reading-signature"><span>初心色譜 · Soul Color</span><i>The Private Spectrum</i></div>
+          <div class="reading-signature"><span>SOUL COLOR · 內在色彩卡</span><i>The Private Spectrum</i></div>
         </div>
       </section>
     </main>
@@ -426,12 +430,12 @@ const CARDS = [
     function cardMarkup(card){
       const contrast=cardInk(card.hex),now=new Date(),date=now.getFullYear()+' 年 '+(now.getMonth()+1)+' 月';
       const paperTex=getTex(card.tex,card.hex);
-      return '<span class="card-band" style="--card-ink:'+contrast.ink+';--card-shadow:'+contrast.shadow+';color:var(--card-ink);text-shadow:var(--card-shadow)"><span class="card-band-bg" style="background:linear-gradient(158deg,'+escapeText(card.bg[0])+','+escapeText(card.bg[1])+')"></span><span class="card-band-tex" style="background-image:url(&quot;'+paperTex+'&quot;)"></span><span class="card-band-grad"></span><span class="card-band-glass"></span><span class="card-hex">'+escapeText(card.hex.toUpperCase())+'</span><span class="card-title"><strong id="dialogCardName">'+escapeText(card.zh)+'</strong><em>'+escapeText(card.en)+'</em></span></span><span class="card-body" style="--paper-tex:url(&quot;'+paperTex+'&quot;)"><span class="card-label">此刻感受</span><span class="card-story">'+escapeText(card.m)+'</span><span class="card-divider"></span><span class="card-question">'+escapeText(card.q)+'</span><span class="card-hint">'+escapeText(card.s)+'</span><span class="card-footer"><span>初心色譜 · Soul Color</span><i>'+date+'</i></span></span>';
+      return '<span class="card-band" style="--card-ink:'+contrast.ink+';--card-shadow:'+contrast.shadow+';color:var(--card-ink);text-shadow:var(--card-shadow)"><span class="card-band-bg" style="background:linear-gradient(158deg,'+escapeText(card.bg[0])+','+escapeText(card.bg[1])+')"></span><span class="card-band-tex" style="background-image:url(&quot;'+paperTex+'&quot;)"></span><span class="card-band-grad"></span><span class="card-band-glass"></span><span class="card-hex">'+escapeText(card.hex.toUpperCase())+'</span><span class="card-title"><strong id="dialogCardName">'+escapeText(card.zh)+'</strong><em>'+escapeText(card.en)+'</em></span></span><span class="card-body" style="--paper-tex:url(&quot;'+paperTex+'&quot;)"><span class="card-label">此刻感受</span><span class="card-story">'+escapeText(card.m)+'</span><span class="card-divider"></span><span class="card-question">'+escapeText(card.q)+'</span><span class="card-hint">'+escapeText(card.s)+'</span><span class="card-footer"><span>SOUL COLOR · 內在色彩卡</span><i>'+date+'</i></span></span>';
     }
     function ritualCardMarkup(card){
       const contrast=cardInk(card.hex),now=new Date(),date=now.getFullYear()+' 年 '+(now.getMonth()+1)+' 月';
       const paperTex=getTex(card.tex,card.hex);
-      return '<span class="card-band" style="--card-ink:'+contrast.ink+';--card-shadow:'+contrast.shadow+';color:var(--card-ink);text-shadow:var(--card-shadow)"><span class="card-band-bg" style="background:linear-gradient(158deg,'+escapeText(card.bg[0])+','+escapeText(card.bg[1])+')"></span><span class="card-band-tex" style="background-image:url(&quot;'+paperTex+'&quot;)"></span><span class="card-band-grad"></span><span class="card-band-glass"></span><span class="card-hex">'+escapeText(card.hex.toUpperCase())+'</span><span class="card-title"><strong>'+escapeText(card.zh)+'</strong><em>'+escapeText(card.en)+'</em></span></span><span class="card-body" style="--paper-tex:url(&quot;'+paperTex+'&quot;)"><span class="card-label">SOUL COLOR</span><span class="card-footer"><span>初心色譜</span><i>'+date+'</i></span></span>';
+      return '<span class="card-band" style="--card-ink:'+contrast.ink+';--card-shadow:'+contrast.shadow+';color:var(--card-ink);text-shadow:var(--card-shadow)"><span class="card-band-bg" style="background:linear-gradient(158deg,'+escapeText(card.bg[0])+','+escapeText(card.bg[1])+')"></span><span class="card-band-tex" style="background-image:url(&quot;'+paperTex+'&quot;)"></span><span class="card-band-grad"></span><span class="card-band-glass"></span><span class="card-hex">'+escapeText(card.hex.toUpperCase())+'</span><span class="card-title"><strong>'+escapeText(card.zh)+'</strong><em>'+escapeText(card.en)+'</em></span></span><span class="card-body" style="--paper-tex:url(&quot;'+paperTex+'&quot;)"><span class="card-label">SOUL COLOR</span><span class="card-footer"><span>內在色彩卡</span><i>'+date+'</i></span></span>';
     }
     function renderRitualCards(){
       const stack=$('ritualStack'),hint=$('ritualHint'),count=state.selected.length;
@@ -479,7 +483,7 @@ const CARDS = [
       $('copyStatus').textContent='';showScreen('complete');playEditorialReveal(document.querySelector('.complete-wrap'));window.scrollTo({top:0,behavior:reduced.matches?'auto':'smooth'});setTimeout(()=>$('copySummary').focus(),80);
     }
     function finishReading(){if(!state.selected.length)return;clearTimeout(state.scrollTimer);$('scrollCue').classList.add('hidden');renderComplete();}
-    function summaryText(){const reading=currentReading(),colors=state.selected.map(card=>card.zh+' '+card.hex.toUpperCase()).join(' × ');return'初心色譜｜本次自我覺察\n\n'+colors+'\n'+reading.title+'\n\n'+reading.meaning+'\n\n「'+reading.question+'」';}
+    function summaryText(){const reading=currentReading(),colors=state.selected.map(card=>card.zh+' '+card.hex.toUpperCase()).join(' × ');return'SOUL COLOR｜內在色彩卡\n\n'+colors+'\n'+reading.title+'\n\n'+reading.meaning+'\n\n「'+reading.question+'」';}
     async function copySummary(){
       const text=summaryText();let copied=false;
       try{await navigator.clipboard.writeText(text);copied=true;}catch(error){const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();copied=document.execCommand('copy');area.remove();}
@@ -499,8 +503,8 @@ const CARDS = [
       y+=190;ctx.fillStyle='#66594E';ctx.font='30px "Noto Serif TC","PMingLiU",serif';y=wrapCanvasText(ctx,reading.meaning,90,y,W-180,52,9)+34;
       ctx.strokeStyle='#A67B42';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(90,y);ctx.lineTo(160,y);ctx.stroke();y+=36;
       ctx.fillStyle='#332A23';ctx.font='40px "Noto Serif TC","PMingLiU",serif';y=wrapCanvasText(ctx,'「'+reading.question+'」',90,y,W-180,62,5)+34;
-      ctx.strokeStyle='rgba(90,60,40,.18)';ctx.beginPath();ctx.moveTo(90,H-150);ctx.lineTo(W-90,H-150);ctx.stroke();ctx.fillStyle='#716255';ctx.font='22px "Noto Serif TC","PMingLiU",serif';ctx.fillText('初心色譜 · Soul Color',90,H-118);ctx.textAlign='right';ctx.fillStyle='#A67B42';ctx.font='italic 22px Georgia,serif';ctx.fillText($('readingDate').textContent,W-90,H-118);ctx.textAlign='left';
-      canvas.toBlob(blob=>{if(!blob){$('copyStatus').textContent='目前無法建立圖卡。';return;}const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='初心色譜-'+state.selected.map(card=>card.zh).join('-')+'.png';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('copyStatus').textContent='本次色光手札已儲存為圖片。';},'image/png');
+      ctx.strokeStyle='rgba(90,60,40,.18)';ctx.beginPath();ctx.moveTo(90,H-150);ctx.lineTo(W-90,H-150);ctx.stroke();ctx.fillStyle='#716255';ctx.font='22px "Noto Serif TC","PMingLiU",serif';ctx.fillText('SOUL COLOR · 內在色彩卡',90,H-118);ctx.textAlign='right';ctx.fillStyle='#A67B42';ctx.font='italic 22px Georgia,serif';ctx.fillText($('readingDate').textContent,W-90,H-118);ctx.textAlign='left';
+      canvas.toBlob(blob=>{if(!blob){$('copyStatus').textContent='目前無法建立圖卡。';return;}const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='內在色彩卡-'+state.selected.map(card=>card.zh).join('-')+'.png';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('copyStatus').textContent='本次色光手札已儲存為圖片。';},'image/png');
     }
     function restartSession(){clearTimeout(state.scrollTimer);state.selected=[];state.current=null;state.revealed=false;cancelAnimationFrame(state.raf);$('scrollCue').classList.add('hidden');showScreen('welcome');window.scrollTo({top:0,behavior:'auto'});setTimeout(()=>$('startDraw').focus(),50);}
     function renderCardFace(card){
