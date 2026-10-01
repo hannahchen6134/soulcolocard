@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>初心色譜｜自我覺察牌卡 SAMPLE</title>
+  <style>
+    :root{--paper:#f4efe7;--paper2:#ebe2d6;--ink:#2c251f;--muted:#786c61;--gold:#a67b42;--coffee:#5a3c28;--coffee-hover:#704b31;--night:#0d0a07;--line:rgba(75,57,40,.16);--focus:#8d6028}
+    *{box-sizing:border-box}
+    html{background:#d8cdbc;color:var(--ink);font-family:"Noto Serif TC","Songti TC","PMingLiU",serif}
+    body{margin:0;min-height:100vh;padding:32px;background:radial-gradient(circle at 12% 8%,rgba(255,249,235,.72),transparent 38%),linear-gradient(145deg,#ded5c7,#cfc1ae)}
+    button,textarea{font:inherit}
+    button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(90,60,40,.12)}
+    .app{min-height:calc(100vh - 64px);max-width:1260px;margin:auto;background:linear-gradient(155deg,rgba(248,244,237,.98),rgba(237,229,218,.98));border:1px solid rgba(255,255,255,.68);box-shadow:0 22px 70px rgba(61,44,28,.14);position:relative;overflow:hidden;isolation:isolate}
+    .app::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E")}.ambient,.ambient *,canvas,.vignette,.card-band-bg,.card-band-tex,.card-band-grad,.card-band-glass{pointer-events:none}
+    .ambient{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}.ambient i{position:absolute;display:block;border-radius:50%;filter:blur(22px);opacity:.38;will-change:transform}.ambient .g1{width:430px;height:430px;right:-170px;top:8%;background:radial-gradient(circle,rgba(218,166,113,.34),rgba(218,166,113,0) 70%);animation:glowA 18s ease-in-out infinite}.ambient .g2{width:390px;height:390px;left:-170px;bottom:2%;background:radial-gradient(circle,rgba(143,166,161,.24),rgba(143,166,161,0) 70%);animation:glowB 22s ease-in-out infinite}.ambient .g3{width:330px;height:330px;left:42%;top:34%;background:radial-gradient(circle,rgba(190,155,177,.18),rgba(190,155,177,0) 70%);animation:glowC 25s ease-in-out infinite}
+    header{height:76px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:relative;z-index:5}
+    .brand{font-size:14px;letter-spacing:.24em}.brand small{display:block;font:9px/1.5 Georgia,serif;letter-spacing:.34em;color:var(--gold);margin-top:3px}
+    .deck-count{font:10px/1.4 Georgia,serif;letter-spacing:.18em;color:var(--muted)}
+    main{position:relative;z-index:2}
+    .screen{display:none;min-height:calc(100vh - 142px)}.screen.active{display:grid}
+    #welcome{grid-template-columns:minmax(280px,.86fr) minmax(360px,1.14fr);align-items:center;padding:clamp(42px,7vw,90px)}
+    .intro{max-width:470px}.eyebrow{font:10px/1.4 Georgia,serif;letter-spacing:.28em;color:var(--gold);margin-bottom:19px}
+    h1{font-size:clamp(34px,4vw,50px);font-weight:400;line-height:1.35;letter-spacing:.06em;margin:0 0 20px}
+    .lead{font-size:15px;line-height:2;color:var(--muted);max-width:36em;margin:0 0 30px}
+    .primary,.secondary{min-height:48px;padding:12px 24px;border-radius:999px;letter-spacing:.12em;border:1px solid transparent;transition:transform .25s ease,background .25s ease,color .25s ease}
+    .primary{background:var(--coffee);color:#fff;box-shadow:0 10px 28px rgba(90,60,40,.18)}.secondary{background:rgba(255,252,246,.34);color:var(--coffee);border-color:rgba(90,60,40,.35)}
+    .primary:hover{background:var(--coffee-hover)}.primary:hover,.secondary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(90,60,40,.2)}.primary:disabled{opacity:.45;cursor:default;transform:none;box-shadow:none}button:not(.card-button):focus-visible,textarea:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid rgba(141,96,40,.46);outline-offset:4px}.card-button:focus-visible{outline:none}.card-button:focus-visible .face{box-shadow:0 0 0 3px rgba(184,144,74,.62),0 18px 48px rgba(0,0,0,.38)}
+    .deck-stage{display:grid;place-items:center;min-height:480px;position:relative}
+    .soft-orbit{position:absolute;width:min(470px,44vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(192,153,112,.24),rgba(192,153,112,0) 68%);animation:orbit 16s ease-in-out infinite}
+    .deck{width:220px;height:336px;position:relative;filter:drop-shadow(0 24px 25px rgba(50,35,23,.18))}.deck::before,.deck::after{content:"";position:absolute;inset:0;border-radius:18px;background:#342b25;border:1px solid rgba(255,255,255,.2)}.deck::before{transform:translate(-18px,14px) rotate(-7deg);opacity:.76}.deck::after{transform:translate(18px,12px) rotate(7deg);opacity:.64}
+    .deck-face{position:absolute;inset:0;z-index:2;border-radius:18px;background:radial-gradient(circle at 50% 38%,rgba(238,216,177,.22),transparent 34%),linear-gradient(145deg,#211b17,#493b30);border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;color:#e8d6b7;text-align:center}.deck-face::before{content:"";position:absolute;inset:16px;border:1px solid rgba(232,214,183,.38);border-radius:11px}.deck-mark{font-size:36px;font-weight:300}.deck-mark small{display:block;font:8px/1.8 Georgia,serif;letter-spacing:.3em;margin-top:12px}
+    .privacy{font-size:11px;line-height:1.8;color:#887a6e;margin-top:16px}
+    .welcome-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+    #draw{grid-template-columns:minmax(360px,1.12fr) minmax(300px,.88fr);align-items:stretch}
+    .visual{background:var(--night);min-height:540px;position:relative;overflow:hidden;display:grid;place-items:center}
+    .visual canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+    .vignette{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 46%,transparent 38%,rgba(0,0,0,.42));pointer-events:none}
+    .card-button{width:min(260px,calc(100% - 124px));aspect-ratio:791/1118;border:0;padding:0;background:transparent;position:relative;z-index:3;perspective:1500px;color:white}
+    .flip-card{position:absolute;inset:0;transform-style:preserve-3d;transition:transform 1.05s cubic-bezier(.22,.7,.2,1)}.card-button.revealed .flip-card{transform:rotateY(180deg)}
+    .face{position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;overflow:hidden;box-shadow:0 22px 58px rgba(0,0,0,.44);border:1px solid rgba(255,255,255,.25)}
+    .back{background:radial-gradient(circle at 50% 37%,rgba(238,216,177,.2),transparent 30%),linear-gradient(145deg,#201915,#4b3a2f);display:grid;place-items:center}.back::before{content:"";position:absolute;inset:15px;border:1px solid rgba(255,255,255,.32);border-radius:11px}.back span{font-size:34px}.back small{position:absolute;bottom:42px;font:8px Georgia,serif;letter-spacing:.3em}
+    .front{transform:rotateY(180deg);background:#fbfaf7;color:#392d24;display:grid;grid-template-rows:37% 63%;text-align:left;text-shadow:none}
+    .card-band{display:block;position:relative;overflow:hidden;color:var(--card-ink,#fff);text-shadow:var(--card-shadow,0 2px 18px rgba(0,0,0,.34))}.card-band-bg,.card-band-tex,.card-band-grad,.card-band-glass{position:absolute;inset:0;display:block}.card-band-tex{opacity:.28;background-size:auto;mix-blend-mode:screen}.card-band-grad{background:linear-gradient(to top,rgba(18,12,8,.62),transparent 58%)}.card-band-glass{background:linear-gradient(148deg,rgba(255,255,255,.14),transparent 52%)}
+    .card-hex{position:absolute;right:5%;top:6%;padding:4px 10px;border-radius:999px;background:rgba(27,16,11,.32);color:rgba(255,255,255,.78);font:700 8px/1.4 ui-monospace,monospace;letter-spacing:.13em;text-shadow:none}.card-title{position:absolute;left:6%;right:6%;bottom:8%;display:block}.card-title strong{display:block;font-size:clamp(21px,1.9vw,28px);font-weight:500;letter-spacing:.12em;line-height:1.1}.card-title em{display:block;font:italic 10px/1.5 Georgia,serif;letter-spacing:.14em;margin-top:6px;opacity:.72}
+    .card-body{display:flex;flex-direction:column;min-height:0;background:rgba(255,255,255,.97);padding:5.5% 5% 4%;color:#3c2e23}.card-label{display:block;font-size:8px;letter-spacing:.32em;color:#8d7b6b;margin-bottom:3%}.card-story{display:block;font-size:clamp(8.2px,.7vw,10.4px);line-height:1.68;letter-spacing:.02em}.card-divider{display:block;height:1px;background:linear-gradient(to right,rgba(184,144,74,.36),transparent);margin:4% 0 3%}.card-question{display:block;font-size:clamp(10px,.86vw,12.5px);font-style:italic;line-height:1.62}.card-hint{display:block;font-size:clamp(6.8px,.58vw,8.5px);letter-spacing:.1em;color:#8e7d6d;margin-top:3%}.card-footer{display:flex;justify-content:space-between;gap:8px;margin-top:auto;padding-top:3%;border-top:1px solid rgba(90,60,40,.08);font-size:clamp(5.8px,.5vw,7.5px);letter-spacing:.14em;color:#8e7d6d}.card-footer i{font-style:italic;color:#a67b42;letter-spacing:.05em;white-space:nowrap}.front.compact .card-story{font-size:8px;line-height:1.58}.front.compact .card-question{font-size:9.5px}.front.extra-compact .card-story{font-size:7.4px;line-height:1.5}.front.extra-compact .card-label,.front.extra-compact .card-hint{margin-bottom:2%;margin-top:2%}
+    .visual-status{position:absolute;z-index:4;left:28px;top:26px;color:rgba(255,255,255,.66);font:9px/1.5 Georgia,serif;letter-spacing:.22em}
+    .mix-labels{position:absolute;z-index:2;left:24px;right:24px;bottom:24px;display:flex;justify-content:center;gap:20px;color:white;text-align:center;pointer-events:none}.mix-label{min-width:82px;text-shadow:0 2px 16px rgba(0,0,0,.95)}.mix-label strong{display:block;font-size:14px;font-weight:400;letter-spacing:.14em}.mix-label span{display:block;font:9px/1.5 ui-monospace,monospace;letter-spacing:.08em;opacity:.58;margin-top:5px}.scroll-cue{display:none;position:absolute;z-index:5;right:18px;bottom:72px;min-height:44px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(20,14,10,.58);color:#fff;padding:10px 14px;font-size:10px;letter-spacing:.08em;box-shadow:0 8px 26px rgba(0,0,0,.2)}.scroll-cue span{display:inline-block;margin-left:5px;animation:cue 1.8s ease-in-out infinite}
+    .reading{padding:clamp(44px,6vw,78px);display:flex;flex-direction:column;justify-content:center;min-width:0}.step{font:9px/1.4 Georgia,serif;letter-spacing:.2em;color:var(--gold);margin-bottom:18px}.reading h2{font-size:clamp(27px,3.1vw,40px);font-weight:400;letter-spacing:.08em;line-height:1.35;margin:0 0 7px}.en{font:italic 12px/1.5 Georgia,serif;letter-spacing:.1em;color:#9d8669}.story{font-size:14px;line-height:2;color:#675b50;margin:25px 0 22px}.question{font-size:clamp(19px,2vw,25px);line-height:1.7;font-weight:400;margin:0 0 22px}.note{width:100%;min-height:76px;padding:13px 0;border:0;border-bottom:1px solid rgba(75,57,40,.3);background:transparent;resize:vertical;color:var(--ink);font-size:14px;line-height:1.8}.actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:25px}.text-action{min-height:44px;border:0;background:transparent;color:#806b59;padding:10px 4px;text-decoration:underline;text-underline-offset:5px}.save-row{display:flex;align-items:center;gap:12px;margin-top:14px}.save-link{border:0;background:transparent;padding:8px 0;color:var(--gold);font-size:12px;text-decoration:underline;text-underline-offset:4px}.saved{font-size:11px;color:#75695d}
+    #overview.screen.active{display:block}.overview-wrap{padding:clamp(40px,6vw,78px);max-width:1180px;margin:auto}.overview-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;margin-bottom:30px}.overview-head h2{font-size:clamp(28px,3.4vw,44px);font-weight:400;letter-spacing:.08em;line-height:1.35;margin:0 0 10px}.overview-copy{font-size:14px;line-height:1.9;color:var(--muted);max-width:650px;margin:0}.overview-tools{position:sticky;top:0;z-index:8;display:grid;grid-template-columns:minmax(220px,380px) 1fr auto;gap:16px;align-items:center;margin:0 -14px 26px;padding:12px 14px;background:rgba(244,239,231,.9);box-shadow:0 12px 24px rgba(70,50,35,.06)}.palette-search{width:100%;min-height:48px;border:0;border-bottom:1px solid rgba(75,57,40,.32);background:rgba(255,255,255,.34);padding:10px 14px;color:var(--ink);font:14px/1.5 inherit}.palette-search::placeholder{color:#928579}.filter-row{display:flex;gap:7px;overflow-x:auto;padding:4px 1px;scrollbar-width:thin}.filter-chip{flex:0 0 auto;min-height:40px;padding:8px 13px;border:1px solid rgba(90,60,40,.2);border-radius:999px;background:transparent;color:#735f4d;font-size:11px}.filter-chip.active{background:var(--coffee);border-color:var(--coffee);color:#fff}.result-count{font:10px/1.5 Georgia,serif;letter-spacing:.14em;color:var(--gold);white-space:nowrap}.palette-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px}.palette-item{display:block;width:100%;min-width:0;padding:0;border:0;text-align:left;color:inherit;background:rgba(255,253,249,.72);border-radius:16px;overflow:hidden;box-shadow:0 12px 30px rgba(71,49,31,.09);position:relative;transition:transform .3s ease,box-shadow .3s ease}.palette-item:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(71,49,31,.14)}.palette-swatch{height:142px;position:relative;overflow:hidden;color:var(--mini-ink,#fff);text-shadow:var(--mini-shadow,0 2px 16px rgba(0,0,0,.35))}.palette-swatch::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,12,8,.54),transparent 62%);pointer-events:none}.palette-tex{position:absolute;inset:0;opacity:.28;mix-blend-mode:screen}.palette-number{position:absolute;z-index:1;left:14px;top:12px;font:8px/1.4 Georgia,serif;letter-spacing:.18em;opacity:.74}.palette-hex{position:absolute;z-index:1;right:12px;top:10px;padding:4px 8px;border-radius:999px;background:rgba(25,16,11,.28);color:rgba(255,255,255,.84);font:700 7px/1.4 ui-monospace,monospace;letter-spacing:.1em;text-shadow:none}.palette-name{position:absolute;z-index:1;left:14px;right:14px;bottom:14px}.palette-name strong{display:block;font-size:19px;font-weight:500;letter-spacing:.1em}.palette-name em{display:block;font:italic 8px/1.5 Georgia,serif;letter-spacing:.09em;margin-top:4px;opacity:.75}.palette-detail{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px 14px;color:#806b59;font-size:10px;letter-spacing:.08em}.palette-detail::after{content:"→";color:var(--gold);font-size:14px}.palette-empty{grid-column:1/-1;padding:50px 0;text-align:center;color:var(--muted);font-size:14px}.overview-foot{display:flex;justify-content:center;margin-top:42px}
+    #complete.screen.active{display:grid}.complete-wrap{width:min(760px,100%);margin:auto;padding:clamp(48px,7vw,86px);text-align:center}.complete-wrap h2{font-size:clamp(30px,4vw,48px);font-weight:400;letter-spacing:.08em;line-height:1.4;margin:0 0 8px}.summary-colors{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:30px 0}.summary-color{min-width:118px;min-height:74px;border:0;border-radius:14px;padding:15px 16px;color:var(--summary-ink,#fff);text-shadow:var(--summary-shadow);box-shadow:0 10px 28px rgba(56,38,24,.12);text-align:left}.summary-color strong{display:block;font-size:16px;font-weight:500}.summary-color span{display:block;font:8px/1.5 ui-monospace,monospace;letter-spacing:.12em;margin-top:6px;opacity:.72}.complete-story{font-size:15px;line-height:2;color:#675b50;margin:22px auto;max-width:610px}.complete-question{font-size:clamp(20px,2.4vw,28px);line-height:1.7;margin:24px auto;max-width:620px}.complete-note{max-width:560px;margin:28px auto;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:#76685c;font-size:13px;line-height:1.9;text-align:left}.complete-note strong{display:block;color:var(--gold);font-size:10px;letter-spacing:.18em;margin-bottom:8px}.complete-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:28px}.copy-status{min-height:24px;margin-top:12px;color:#7d6d5f;font-size:11px}
+    .card-dialog{width:min(430px,calc(100vw - 48px));max-height:calc(100vh - 48px);padding:0;border:0;border-radius:22px;background:transparent;overflow:visible}.card-dialog::backdrop{background:rgba(15,10,7,.82)}.dialog-shell{position:relative;display:grid;place-items:center;padding:42px 20px 20px}.dialog-close{position:absolute;right:8px;top:0;min-width:44px;min-height:44px;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(43,29,20,.82);color:white;font-size:12px}.zoom-card{width:min(340px,calc(100vw - 88px));aspect-ratio:791/1118;border-radius:20px;overflow:hidden;display:grid;grid-template-rows:37% 63%;background:#fbfaf7;color:#392d24;box-shadow:0 26px 80px rgba(0,0,0,.5)}.zoom-card .card-title strong{font-size:27px}.zoom-card .card-title em{font-size:10px}.zoom-card .card-story{font-size:10.5px;line-height:1.72}.zoom-card .card-question{font-size:13px}.zoom-card .card-hint{font-size:8px}.zoom-card .card-footer{font-size:7px}
+    .hidden{display:none!important}.live{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @keyframes orbit{50%{transform:translate(12px,-8px) scale(1.04)}}@keyframes glowA{50%{transform:translate(-22px,16px) scale(1.04);opacity:.48}}@keyframes glowB{50%{transform:translate(26px,-18px) scale(1.035);opacity:.34}}@keyframes glowC{50%{transform:translate(-14px,20px) scale(1.04);opacity:.25}}@keyframes cue{50%{transform:translateY(4px);opacity:.62}}
+    .palette-swatch{display:block}
+    @media(max-width:1040px){.palette-list{grid-template-columns:repeat(4,minmax(0,1fr))}}
+    @media(max-width:860px){#welcome,#draw{grid-template-columns:1fr}.screen{min-height:auto}#welcome{padding:42px 32px 54px}.intro{max-width:620px}.deck-stage{min-height:350px;order:-1}.soft-orbit{width:min(370px,78vw)}.deck{width:170px;height:260px}.visual{min-height:490px}.reading{padding:46px 32px 54px}.scroll-cue:not(.hidden){display:block}.palette-list{grid-template-columns:repeat(3,minmax(0,1fr))}.overview-head{grid-template-columns:1fr;align-items:start}.overview-head .secondary{justify-self:start}.overview-tools{grid-template-columns:1fr auto}.filter-row{grid-column:1/-1;grid-row:2}.complete-wrap{padding-left:32px;padding-right:32px}}
+    @media(max-width:620px){.palette-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.palette-swatch{height:128px}.overview-tools{margin-left:-8px;margin-right:-8px;padding-left:8px;padding-right:8px}.palette-search{width:100%}}
+    @media(max-width:520px){body{padding:32px}.app{min-height:calc(100vh - 64px)}header{height:68px;padding:0 22px}.brand{font-size:12px}.deck-count{font-size:8px}h1{font-size:28px;line-height:1.45}.lead{font-size:14px}.deck-stage{min-height:290px}.deck{width:145px;height:222px}.visual{min-height:460px}.card-button{width:min(210px,calc(100% - 86px))}.card-title strong{font-size:18px}.card-title em{font-size:7.5px;margin-top:4px}.card-hex{font-size:6.5px;padding:3px 7px}.card-label{font-size:6.4px}.card-story{font-size:7.2px;line-height:1.5}.card-question{font-size:8.7px}.card-hint{font-size:5.8px}.card-footer{font-size:5.2px}.front.compact .card-story{font-size:6.7px}.front.extra-compact .card-story{font-size:6.2px}.reading h2{font-size:28px}.mix-labels{gap:10px;left:10px;right:10px;bottom:16px}.mix-label{min-width:0}.mix-label strong{font-size:12px}.mix-label span{font-size:7px}.actions button{width:100%}.reading{padding:42px 32px 50px}.overview-wrap{padding:42px 22px 54px}.overview-head{gap:20px}.palette-name strong{font-size:17px}.palette-detail{padding:12px}.summary-color{min-width:108px}.complete-actions button{width:100%}.zoom-card .card-title strong{font-size:24px}.zoom-card .card-story{font-size:9.8px}.zoom-card .card-question{font-size:12px}}
+    @media(max-width:520px){.deck-stage{min-height:255px}.deck{width:136px;height:208px}}
+    /* Private Spectrum refinement: paper, archive, restrained motion */
+    body{background:linear-gradient(145deg,#ded5c7,#cfc1ae)}
+    .app{box-shadow:0 12px 38px rgba(61,44,28,.09)}
+    .app::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.16;background-image:repeating-linear-gradient(2deg,rgba(95,70,47,.025) 0,rgba(95,70,47,.025) 1px,transparent 1px,transparent 5px),repeating-linear-gradient(92deg,rgba(255,255,255,.045) 0,rgba(255,255,255,.045) 1px,transparent 1px,transparent 9px)}
+    .app::after{opacity:.09;mix-blend-mode:multiply}
+    .ambient,.soft-orbit{display:none}
+    .brand{letter-spacing:.16em}.brand small{letter-spacing:.2em}.deck-count{letter-spacing:.11em}.eyebrow{letter-spacing:.16em}.step{letter-spacing:.12em}.en{letter-spacing:.055em}.card-title em,.palette-name em{letter-spacing:.055em}.visual-status{letter-spacing:.14em}.back small{letter-spacing:.18em}
+    .primary{border-radius:999px;box-shadow:0 5px 14px rgba(90,60,40,.13)}
+    .secondary{min-height:44px;padding:10px 2px;border:0;border-bottom:1px solid rgba(90,60,40,.38);border-radius:0;background:transparent;box-shadow:none}
+    .primary:hover,.secondary:hover{transform:none;box-shadow:none}.primary:hover{box-shadow:0 6px 17px rgba(90,60,40,.17)}
+    .filter-chip{border:0;border-bottom:1px solid transparent;border-radius:0;background:transparent;padding:8px 7px;min-height:40px}
+    .filter-chip.active{background:transparent;border-color:var(--coffee);color:var(--coffee)}
+    .soft-orbit{animation:none}.deck{filter:drop-shadow(0 12px 16px rgba(50,35,23,.12))}
+    .flip-card{transform-style:flat;transition:none}.card-button.revealed .flip-card{transform:none}
+    .face{backface-visibility:visible;box-shadow:0 12px 30px rgba(0,0,0,.32);transition:opacity .9s ease,transform .9s ease}
+    .back{opacity:1;transform:none}.front{transform:none;opacity:0}.card-button.revealed .back{opacity:0;transform:scale(.988)}.card-button.revealed .front{opacity:1}
+    .scroll-cue{border-radius:0;border-width:0 0 1px;background:transparent;box-shadow:none;padding-left:2px;padding-right:2px}.scroll-cue span{animation:none}
+    .overview-tools{box-shadow:none;border-bottom:1px solid rgba(75,57,40,.14)}
+    .palette-list{display:block}.spectrum-group{margin:0 0 54px}.spectrum-heading{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin:0 0 18px;padding-bottom:10px;border-bottom:1px solid rgba(75,57,40,.14)}.spectrum-heading h3{font-size:20px;font-weight:400;letter-spacing:.1em;margin:0}.spectrum-heading span{font:9px/1.4 Georgia,serif;letter-spacing:.1em;color:var(--gold)}.spectrum-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px}
+    .palette-item{border-radius:10px;box-shadow:0 5px 12px rgba(71,49,31,.055);transition:filter .35s ease}.palette-item:hover{transform:none;box-shadow:0 5px 12px rgba(71,49,31,.055);filter:brightness(1.025)}.palette-detail{border-top:1px solid rgba(75,57,40,.08)}
+    .palette-hex{border-radius:2px}.palette-empty{padding:70px 0;border-top:1px solid var(--line)}
+    .complete-wrap{position:relative;width:min(730px,100%);padding:clamp(52px,7vw,88px);text-align:left;background:rgba(255,253,249,.42);border-left:1px solid rgba(75,57,40,.12);border-right:1px solid rgba(75,57,40,.12)}
+    .complete-wrap::before{content:"";position:absolute;inset:18px;pointer-events:none;border-top:1px solid rgba(166,123,66,.18);border-bottom:1px solid rgba(166,123,66,.18)}
+    .reading-meta{display:flex;justify-content:space-between;gap:20px;margin-bottom:42px;font:9px/1.5 Georgia,serif;letter-spacing:.1em;color:#8f7d6b}.complete-wrap h2{font-size:clamp(32px,4vw,48px);letter-spacing:.05em;margin-bottom:7px}.complete-wrap>.en{display:block;margin-bottom:30px}
+    .summary-colors{display:grid;grid-template-columns:repeat(var(--color-count,1),minmax(0,1fr));gap:2px;margin:28px 0 34px}
+    .summary-color{min-width:0;min-height:88px;border:0;border-radius:0;padding:15px;color:var(--summary-ink,#fff);text-shadow:var(--summary-shadow);box-shadow:none;text-align:left;transition:filter .3s ease}.summary-color:hover{filter:brightness(1.035)}
+    .complete-story{margin:26px 0;max-width:610px}.complete-question{position:relative;margin:34px 0 30px;padding:28px 0 0;max-width:620px}.complete-question::before{content:"";position:absolute;left:0;top:0;width:58px;height:1px;background:var(--gold)}
+    .complete-note{margin:30px 0;max-width:590px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 30px,rgba(90,60,40,.1) 30px,rgba(90,60,40,.1) 31px);padding:18px 0 20px;border:0;min-height:100px}.complete-note strong{letter-spacing:.1em}
+    .complete-actions{justify-content:flex-start}.reading-signature{display:flex;justify-content:space-between;gap:20px;margin-top:48px;padding-top:14px;border-top:1px solid var(--line);font-size:10px;letter-spacing:.08em;color:#8e7d6d}.reading-signature i{font:italic 11px Georgia,serif;color:var(--gold)}
+    .dialog-close{border:0;border-bottom:1px solid rgba(255,255,255,.55);border-radius:0;background:transparent;padding:4px 0;min-width:44px}.zoom-card{box-shadow:0 18px 50px rgba(0,0,0,.42)}
+    @media(max-width:1040px){.spectrum-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+    @media(max-width:860px){.spectrum-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:620px){.spectrum-group{margin-bottom:42px}.spectrum-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.reading-meta{margin-bottom:32px}.summary-colors{gap:1px}}
+    @media(max-width:520px){.complete-wrap{padding:48px 32px}.complete-actions .secondary,.complete-actions .text-action{width:auto}.reading-signature{align-items:flex-end}.spectrum-heading h3{font-size:18px}}
+    @keyframes editorialRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes ruleUnfold{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+    @keyframes quietAppear{from{opacity:0}to{opacity:1}}
+    #welcome.active .intro>.eyebrow{animation:editorialRise .8s ease-out both}
+    #welcome.active .intro>h1{animation:editorialRise 1s .12s cubic-bezier(.22,.7,.2,1) both}
+    #welcome.active .intro>.lead{animation:editorialRise .95s .25s ease-out both}
+    #welcome.active .welcome-actions{animation:editorialRise .9s .38s ease-out both}
+    #welcome.active .privacy{animation:quietAppear 1s .55s ease-out both}
+    #welcome.active .deck{animation:editorialRise 1.15s .16s cubic-bezier(.22,.7,.2,1) both}
+    #afterReveal h2{position:relative;padding-bottom:17px}
+    #afterReveal h2::after{content:"";position:absolute;left:0;bottom:0;width:64px;height:1px;background:var(--gold);transform-origin:left center}
+    .reading.is-entering .step,.reading.is-entering #beforeReveal h2,.reading.is-entering #beforeReveal .lead,.reading.is-entering #beforeReveal .primary,.reading.is-entering #afterReveal h2,.reading.is-entering #afterReveal .en,.reading.is-entering #afterReveal .story,.reading.is-entering #afterReveal .question,.reading.is-entering #afterReveal .note,.reading.is-entering #afterReveal .save-row,.reading.is-entering #afterReveal .actions{animation:editorialRise .9s cubic-bezier(.22,.7,.2,1) both}
+    .reading.is-entering #beforeReveal h2,.reading.is-entering #afterReveal h2{animation-delay:.08s}.reading.is-entering #beforeReveal .lead,.reading.is-entering #afterReveal .en{animation-delay:.18s}.reading.is-entering #beforeReveal .primary,.reading.is-entering #afterReveal .story{animation-delay:.3s}.reading.is-entering #afterReveal .question{animation-delay:.42s}.reading.is-entering #afterReveal .note{animation-delay:.53s}.reading.is-entering #afterReveal .save-row{animation-delay:.61s}.reading.is-entering #afterReveal .actions{animation-delay:.69s}
+    .reading.is-entering #afterReveal h2::after{animation:ruleUnfold 1.05s .45s cubic-bezier(.22,.7,.2,1) both}
+    .mix-labels.reveal-mix .mix-label{animation:editorialRise 1s ease-out both}.mix-labels.reveal-mix .mix-label:nth-child(2){animation-delay:.12s}.mix-labels.reveal-mix .mix-label:nth-child(3){animation-delay:.24s}.mix-labels.reveal-mix .mix-label:nth-child(4){animation-delay:.36s}
+    .complete-wrap.is-entering .reading-meta,.complete-wrap.is-entering>.eyebrow,.complete-wrap.is-entering>h2,.complete-wrap.is-entering>.en,.complete-wrap.is-entering .summary-colors,.complete-wrap.is-entering .complete-story,.complete-wrap.is-entering .complete-question,.complete-wrap.is-entering .complete-note,.complete-wrap.is-entering .complete-actions,.complete-wrap.is-entering .reading-signature{animation:editorialRise .95s cubic-bezier(.22,.7,.2,1) both}
+    .complete-wrap.is-entering>.eyebrow{animation-delay:.08s}.complete-wrap.is-entering>h2{animation-delay:.16s}.complete-wrap.is-entering>.en{animation-delay:.23s}.complete-wrap.is-entering .summary-colors{animation-delay:.3s}.complete-wrap.is-entering .complete-story{animation-delay:.4s}.complete-wrap.is-entering .complete-question{animation-delay:.5s}.complete-wrap.is-entering .complete-note{animation-delay:.58s}.complete-wrap.is-entering .complete-actions{animation-delay:.67s}.complete-wrap.is-entering .reading-signature{animation-delay:.76s}
+    .spectrum-group.reveal-pending{opacity:0;transform:translateY(18px)}.spectrum-group.reveal-pending.in-view{opacity:1;transform:translateY(0);transition:opacity 1s ease-out,transform 1s cubic-bezier(.22,.7,.2,1)}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.spectrum-group.reveal-pending{opacity:1!important;transform:none!important}}
+  </style>
+</head>
+<body>
+  <div class="app" data-screen="welcome">
+    <div class="ambient" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i></div>
+    <header><div class="brand">初心色譜<small>SOUL COLOR</small></div><div class="deck-count">105 COLORS · SELF-AWARENESS DECK</div></header>
+    <main>
+      <section class="screen active" id="welcome">
+        <div class="intro">
+          <div class="eyebrow">A QUIET DRAW · 自我覺察牌卡</div>
+          <h1>抽一張色票，<br>聽聽此刻的自己。</h1>
+          <p class="lead">這不是心理測驗，也沒有標準答案。牌卡不替你定義情緒，只提供一個問題，陪你靠近現在的感受。</p>
+          <div class="welcome-actions"><button class="primary" id="startDraw">洗牌，抽一張</button><button class="secondary" id="openOverview">先看 105 張完整總覽</button></div>
+          <p class="privacy">SAMPLE 不會上傳你的文字；筆記只會留在這台裝置。</p>
+        </div>
+        <div class="deck-stage" aria-hidden="true"><div class="soft-orbit"></div><div class="deck"><div class="deck-face"><div class="deck-mark">✦<small>105 COLOR CARDS</small></div></div></div></div>
+      </section>
+
+      <section class="screen" id="draw" aria-labelledby="cardTitle">
+        <div class="visual" id="visual">
+          <canvas id="blendCanvas" aria-hidden="true"></canvas><div class="vignette"></div>
+          <div class="visual-status" id="visualStatus">CARD 01 · WAITING TO REVEAL</div>
+          <button class="card-button" id="cardButton" aria-label="翻開牌卡">
+            <span class="flip-card"><span class="face back"><span>✦</span><small>CLICK TO REVEAL</small></span><span class="face front" id="cardFront">
+              <span class="card-band"><span class="card-band-bg" id="cardBandBg"></span><span class="card-band-tex" id="cardTexture"></span><span class="card-band-grad"></span><span class="card-band-glass"></span><span class="card-hex" id="frontHex"></span><span class="card-title"><strong id="frontZh"></strong><em id="frontEn"></em></span></span>
+              <span class="card-body"><span class="card-label">此刻感受</span><span class="card-story" id="frontStory"></span><span class="card-divider"></span><span class="card-question" id="frontQuestion"></span><span class="card-hint" id="frontHint"></span><span class="card-footer"><span>初心色譜 · Soul Color</span><i id="frontDate"></i></span></span>
+            </span></span>
+          </button>
+          <button class="scroll-cue hidden" id="scrollCue">往下閱讀牌卡訊息 <span aria-hidden="true">↓</span></button>
+          <div class="mix-labels hidden" id="mixLabels"></div>
+        </div>
+        <article class="reading">
+          <div class="step" id="stepText">STEP 01 · 翻開牌卡</div>
+          <div id="beforeReveal"><h2 id="cardTitle">你的色票已經抽出</h2><p class="lead">先不要猜它是什麼。停一下，準備好時再翻開。</p><button class="primary" id="revealButton">翻開牌卡</button></div>
+          <div class="hidden" id="afterReveal">
+            <h2 id="readingZh"></h2><div class="en" id="readingEn"></div><p class="story" id="readingStory"></p><p class="question" id="readingQuestion"></p>
+            <label class="live" for="note">寫下此刻的感受</label><textarea class="note" id="note" placeholder="不需要完整回答，留下一個詞也可以……"></textarea>
+            <div class="save-row"><button class="save-link" id="saveNote">暫存這次筆記</button><span class="saved" id="savedStatus" aria-live="polite"></span></div>
+            <div class="actions"><button class="primary" id="addCard">再抽一張，加入混色</button><button class="secondary" id="finishReading">就停在這一張</button><button class="text-action" id="restart">重新洗牌</button></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="screen" id="overview" aria-labelledby="overviewTitle">
+        <div class="overview-wrap">
+          <div class="overview-head">
+            <div><div class="eyebrow">THE COMPLETE ARCHIVE · 105 COLORS</div><h2 id="overviewTitle">105 張牌卡完整總覽</h2><p class="overview-copy">這裡直接沿用正式初心色譜的 105 色資料，沒有另外替牌卡命名。你可以搜尋或依色系篩選；點選任何色票即可放大查看原故事與提問。</p></div>
+            <button class="secondary" id="overviewBackTop">回到抽牌</button>
+          </div>
+          <div class="overview-tools"><label class="live" for="paletteSearch">搜尋牌卡名稱或色碼</label><input class="palette-search" id="paletteSearch" type="search" placeholder="搜尋中文名、英文名或 HEX 色碼"><div class="filter-row" id="filterRow" aria-label="依色系篩選"><button class="filter-chip active" data-filter="all">全部</button><button class="filter-chip" data-filter="warm">暖色</button><button class="filter-chip" data-filter="green">綠色</button><button class="filter-chip" data-filter="blue">藍色</button><button class="filter-chip" data-filter="purple">紫色</button><button class="filter-chip" data-filter="neutral">中性色</button></div><div class="result-count" id="paletteCount">105 / 105 CARDS</div></div>
+          <div class="palette-list" id="paletteList"></div>
+          <div class="overview-foot"><button class="primary" id="overviewBackBottom">回到抽牌，洗牌抽一張</button></div>
+        </div>
+      </section>
+
+      <section class="screen" id="complete" aria-labelledby="completeTitle">
+        <div class="complete-wrap">
+          <div class="reading-meta"><span id="readingDate"></span><span id="readingNumber"></span></div>
+          <div class="eyebrow">YOUR READING · 本次覺察</div>
+          <h2 id="completeTitle">先停在這裡，也很好。</h2>
+          <div class="en" id="completeEn"></div>
+          <div class="summary-colors" id="summaryColors"></div>
+          <p class="complete-story" id="completeStory"></p>
+          <p class="complete-question" id="completeQuestion"></p>
+          <div class="complete-note" id="completeNote"></div>
+          <div class="complete-actions"><button class="primary" id="downloadCard">儲存本次圖卡</button><button class="secondary" id="copySummary">複製文字</button><button class="secondary" id="summaryOverview">查看 105 色</button><button class="text-action" id="summaryRestart">重新洗牌</button></div>
+          <div class="copy-status" id="copyStatus" aria-live="polite"></div>
+          <div class="reading-signature"><span>初心色譜 · Soul Color</span><i>The Private Spectrum</i></div>
+        </div>
+      </section>
+    </main>
+    <div class="live" id="announcer" aria-live="polite"></div>
+  </div>
+
+  <dialog class="card-dialog" id="cardDialog" aria-labelledby="dialogCardName">
+    <div class="dialog-shell"><button class="dialog-close" id="dialogClose" aria-label="關閉完整牌卡">關閉</button><div class="zoom-card" id="zoomCard"></div></div>
+  </dialog>
+
+  <script>
+const CARDS = [
+  {id:"c1",n:1, zh:"爐心", en:"Furnace", hex:"#D83018",bg:["#A81008","#D83018"],m:"鍛劍師把鐵塊推進爐裡，等它燒到通紅。他說，鐵最好打的時候不是最硬的時候，是它剛剛變軟、還帶著熱度的那一刻。那個時刻，什麼形狀都還有可能。",q:"你現在最想做什麼？",s:"不需要立刻回答，先感受就好。",tex:"dragon"},
+  {id:"c2",n:2, zh:"暮燒", en:"Ember", hex:"#E87030",bg:["#C04818","#E87030"],m:"鐵匠收工前習慣站在門口看一眼夕陽。那道橙光把整條街都燒成暖的，他想起今天敲好的那把鑰匙，不算完美，但是做完了。他轉身回去，覺得今天是算數的。",q:"今天結束了，你還好嗎？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c3",n:3, zh:"琥珀時", en:"Time Sealed", hex:"#C86018",bg:["#A04010","#C86018"],m:"玻璃工匠把一塊琥珀拿到光下，裡面有一隻幾千年前的小蟲，姿勢像是還在飛。他看了很久，說不清楚那是一種什麼感覺，那是某種時間停下來的踏實與充實。",q:"有什麼事你沒辦法忘？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c4",n:4, zh:"柿霜", en:"Frosted", hex:"#D06828",bg:["#A84818","#D06828"],m:"果園的柿子掛了整個秋天，從硬的等到軟的，從澀的等到甜的。沒有人催它，它自己知道什麼時候好了。摘下來的那一天，連空氣都是橙色的。",q:"你在等一件什麼事？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c5",n:5, zh:"土根", en:"Earth Root", hex:"#C04828",bg:["#903018","#C04828"],m:"製陶的老婦人蹲下來，抓起一把土，捏了捏，放回去。她說，這裡的土有韌性，不是每一塊土都這樣，你要先知道你手裡的是哪一種質感與個性，才知道能做什麼形狀。",q:"你的力氣從哪裡來？",s:"不需要立刻回答，先感受就好。",tex:"dragon"},
+  {id:"c6",n:6, zh:"珊瑚息", en:"Coral Breath", hex:"#E07058",bg:["#C04838","#E07058"],m:"退潮的時候，珊瑚礁就露出來了，粉橘色的，像是海底長出來的城市。漁夫說，珊瑚長得慢，但它是整片海最重要的地方，很多生命都在那裡棲身。",q:"最近什麼事讓你覺得有意義？",s:"不需要立刻回答，先感受就好。",tex:"dragon"},
+  {id:"c7",n:7, zh:"粉珊瑚", en:"Pink Coral", hex:"#FF9B8A",bg:["#E07860","#FF9B8A"],m:"海底深處的珊瑚,在潮汐間呼吸,在暗流裡綻放。它不需要陽光直射,就能活得那麼鮮豔。生命,總會找到自己的方式發光。",q:"你現在最想見的人是誰？",s:"不需要立刻回答,先感受就好。",tex:"marble"},
+  {id:"c8",n:8, zh:"陶痕", en:"Clay Trace", hex:"#A86040",bg:["#804030","#A86040"],m:"陶匠說，她從不用模具。她說，模具做出來的每個都一樣，但手塑的每一個都不一樣，那個歪歪的地方、那個厚一點的邊，是她的手留在裡面的痕跡。",q:"你有什麼別人不知道的地方？",s:"不需要立刻回答，先感受就好。",tex:"dragon"},
+  {id:"c9",n:9, zh:"柔桃", en:"Soft Peach", hex:"#FFB89E",bg:["#FFA080","#FFB89E"],m:"初戀的溫度就是這樣吧。柔軟,明亮,不用力,卻能把整個心照亮。像清晨的陽光透過窗簾,輕輕落在臉上的那種溫柔。",q:"最近誰讓你覺得被照顧了？",s:"不需要立刻回答,先感受就好。",tex:"marble"},
+  {id:"c10",n:10, zh:"樹紋", en:"Tree Ring", hex:"#9A7050",bg:["#785038","#9A7050"],m:"木匠摸著那棵老樹的樹皮，每一道紋路都是一年。他說，你別以為那些紋是傷，那是它長過的證明，它還站著，而且比任何一棵年輕的樹都更難撼動。",q:"你走到現在，什麼沒有變？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c11",n:11, zh:"杏暖", en:"Apricot Warmth", hex:"#E8C0A0",bg:["#C09070","#E8C0A0"],m:"郵差說，他每年最喜歡走那條有杏花的路，那個香出現，他就知道春天真的來了，不是天氣告訴他的，是鼻子告訴他的。那個香讓他想起很小的時候，但他說不清楚是哪一個記憶的畫面。",q:"有什麼記憶最近一直出現？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c12",n:12, zh:"老玫瑰", en:"Old Rose", hex:"#C17B7B",bg:["#A05858","#C17B7B"],m:"成熟的愛意,既濃烈又含蓄。它不再像初戀那樣張揚,但你知道它更深。懂得收放,懂得等待,也懂得在對的時候全然給出。",q:"有什麼事，你現在比以前更懂了？",s:"不需要立刻回答,先感受就好。",tex:"marble"},
+  {id:"c13",n:13, zh:"土息", en:"Earth Breath", hex:"#8A6050",bg:["#604038","#8A6050"],m:"農婦翻土的時候，那股氣味升起來。她說，她喜歡這個味道，泥土什麼都能長，什麼都接受，但它從來不說那是它的功勞。它只是在那裡，讓事情發生。",q:"什麼讓你覺得安心？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c14",n:14, zh:"深木息", en:"Deep Wood", hex:"#5A3C28",bg:["#381E10","#5A3C28"],m:"船匠挑木料的時候，他先敲，聽聲音。老木頭的聲音是悶的、沉的，不響亮，但結實。他說，這種木頭做的船，才沉得住，才撐得過大浪。",q:"你最不容易被動搖的是什麼？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c15",n:15, zh:"芙蓉變", en:"Shifting", hex:"#E8B8B8",bg:["#C08888","#E8B8B8"],m:"木芙蓉早上是白的，中午變粉，到了傍晚是深玫瑰色。同一朵花，同一天，三種樣子。看過它的人說，它讓他們覺得，一天裡可以有好幾個自己，都算真的。",q:"你今天和昨天一樣嗎？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c16",n:16, zh:"玫瑰深", en:"Rose Depth", hex:"#B88888",bg:["#906868","#B88888"],m:"香水師說，玫瑰是她最難用的材料，不是因為它不好，是因為太多人認識它的表面，很少人認識它的深度。同樣是玫瑰，有人配出來的是艷麗，有人做出來的是靈魂。",q:"有什麼你沒讓人看見過？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c17",n:17, zh:"桃訊", en:"Signal", hex:"#D8A8A8",bg:["#B07880","#D8A8A8"],m:"渡船老人說，他知道春天來了不是靠天氣，是靠那棵桃樹。只要它開了，他就知道某種轉換來了。他說，你以為自己不在意那棵樹，但看到它開，你還是笑了。",q:"你期待什麼？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c18",n:18, zh:"夜土", en:"Night Soil", hex:"#3A3028",bg:["#201808","#3A3028"],m:"夜行的老婦人說，她不怕黑，因為她知道黑夜是大地在睡覺，不是大地消失了。她走在黑暗裡，腳底踩著土，她說，你只要感覺到腳下是實的，你就知道你在哪裡。",q:"你現在擔心什麼？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c19",n:19, zh:"深潭", en:"Deep Pool", hex:"#2A2018",bg:["#181008","#2A2018"],m:"村子後面有一個深潭，沒有人知道它有多深。但它從來不溢出來，從來不乾，四季都在那裡。守林人說，有些東西你說不清楚，但你知道它都在那，那個知道，比什麼都讓人安心。",q:"有什麼事你從來沒說出口？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c20",n:20, zh:"暖石", en:"Warm Stone", hex:"#B8AEA5",bg:["#988E85","#B8AEA5"],m:"老石牆上的光影,不爭不辯,只是安穩地存在著。它見過風雨,也見過晴天,但它從不說自己經歷了什麼,只是靜靜地站在那裡,讓你靠著。",q:"什麼讓你覺得穩？",s:"不需要立刻回答,先感受就好。",tex:"marble"},
+  {id:"c21",n:21, zh:"月灰", en:"Moon Ash", hex:"#D4D0CC",bg:["#ACA8A4","#D4D0CC"],m:"詩人說，月亮本身不發光，但月光讓人寫了多少詩，走過了多少夜路。她說，她很喜歡這件事，有些光，不是你自己發出來的，而是你讓別人的光有了方向。",q:"睡前你在想什麼？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c22",n:22, zh:"蔓玫", en:"Climbing Rose", hex:"#E0B8B8",bg:["#C090A0","#E0B8B8"],m:"那棟老宅的牆上，蔓玫爬了好幾年，現在整面牆都是它的。沒有人替它規劃路線，你給它一根支架，它自己就知道怎麼往上長，怎麼轉彎，怎麼找到下一個方向。",q:"你最近在往哪個方向走？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c23",n:23, zh:"晨金", en:"Morning Gold", hex:"#F0A820",bg:["#C87818","#F0A820"],m:"麵包師傅的學徒每天天亮前就到了，爐子還沒熱，村子還沒醒。那個時刻是他一個人的，橙金色的光從窗縫透進來，他把手放在麵團上，覺得今天什麼都還有可能。",q:"你今天最想做但還沒做的是什麼？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c24",n:24, zh:"穗金", en:"Grain Gold", hex:"#E89030",bg:["#C06818","#E89030"],m:"風來的時候，整片麥田一起動了。村子裡的人都走出來站在路邊，沒有說話，只是看著那片金色在風裡搖。有人笑了，也說不清楚為什麼，只是覺得，這就是那種值得的感覺。",q:"有什麼事你覺得值了？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c25",n:25, zh:"向光", en:"Light Seeking", hex:"#E8D070",bg:["#C0A840","#E8D070"],m:"田邊的向日葵每天都轉，早上朝東，傍晚朝西，跟著太陽走。不是有人告訴它要這樣，是它本來就知道光在哪裡。那個知道，不是學來的，是長在它裡面的。",q:"什麼讓你提起勁？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c26",n:26, zh:"沙息", en:"Sand Breath", hex:"#C4A878",bg:["#A08850","#C4A878"],m:"商旅說，沙丘每天形狀都不一樣，風從哪邊來，它就往哪邊堆。但那片沙漠本身，從來沒有移動過。她說，你要認識的不是今天的形狀，是那片不動的沙漠。",q:"你一直帶著的是什麼？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c27",n:27, zh:"穀暖", en:"Grain Warmth", hex:"#D8C090",bg:["#B8A068","#D8C090"],m:"管糧的老人說，穀倉最重要的不是裝滿，是知道什麼時候打開來用。他說，他見過一些人，倉裡滿得快要溢出來，但從來不動它，那個不動，有時候是謹慎，有時候是別的狀態。",q:"有什麼你捨不得給出去？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c28",n:28, zh:"土深", en:"Deep Earth", hex:"#7A5C3A",bg:["#5A3C1A","#7A5C3A"],m:"考古師說，他挖的不是土，是時間。他說，你挖得越深，你和越遠的事情說話。他每次挖到什麼，都會在那個坑裡坐一下，讓自己感覺那個深度。",q:"對你來說什麼最重要？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c29",n:29, zh:"燭息", en:"Candle Breath", hex:"#F0E0B8",bg:["#D0B880","#F0E0B8"],m:"那個冬天停電了，整條街都黑了。有人點了一根蠟燭放在窗口，那個光很小，照不了多遠，但從街上看進去，那個黃色的光讓人覺得那棟房子裡有人，不孤單。",q:"誰讓你不覺得孤單？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c30",n:30, zh:"石暖", en:"Stone Warmth", hex:"#8A7A68",bg:["#605048","#8A7A68"],m:"傍晚，石板路上的溫度還是暖的，是白天的太陽留下來的。石道的守衛說，他喜歡那個時刻，不是太陽給他的，是石頭替他存著、等他來的。他說，那種溫暖和直接照到的不一樣。",q:"有什麼你一直沒說謝謝？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c31",n:31, zh:"炭黑", en:"Charcoal Black", hex:"#383028",bg:["#201808","#383028"],m:"炭火燒起來是黑的，看起來沉默，看起來冷。但靠近一點，你感覺到熱，穩的，蓬勃的，不像明火那樣張揚，但炭火燒完一頓飯，明火燒一半就滅了。",q:"你付出過的，有什麼留下來了？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c32",n:32, zh:"鐵沉", en:"Iron Silence", hex:"#504840",bg:["#302820","#504840"],m:"鐵匠說，鐵要好，要反覆錘打。不是為了讓它受苦，是讓它更密、更結實，讓它能承受更多的重量。他說，每一次錘打之後，鐵都更像它真正的樣子、更有個性了。",q:"有什麼話你一直沒說？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c33",n:33, zh:"灰寂", en:"Ash Silence", hex:"#706860",bg:["#504848","#706860"],m:"鍛爐師說，灰燼是火燒完之後的樣子。他把它收起來，混進花園的土裡。他說，燒過的東西，不一定是失去，有時候它只是換了一個方式，繼續養著什麼。",q:"有什麼事已經結束了？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c34",n:34, zh:"霜薄", en:"Thin Frost", hex:"#C8C4BC",bg:["#A09C94","#C8C4BC"],m:"清晨的草葉上結了霜，太陽一出來，慢慢就化了。農夫說，霜來了他不怕，因為他知道它會走。他說，知道它會走的，你就能好好等它走完。",q:"最近什麼事讓你覺得累？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c35",n:35, zh:"雲淡", en:"Faint Cloud", hex:"#CCC8C0",bg:["#A4A09A","#CCC8C0"],m:"牧羊人躺在草地上看雲，雲從來不停在同一個地方。他說，雲不是在逃，它是在移動，這兩件事看起來一樣，但感覺完全不同。他說，他花了很多年才分清楚。",q:"有什麼事可以先放著不管？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c36",n:36, zh:"蘆息", en:"Reed Breath", hex:"#D0C8C0",bg:["#A8A09A","#D0C8C0"],m:"風來的時候，蘆葦全部一起彎了，整片都低下去。風走了，它們又一起回來了，還是那樣站著。河邊的老人看了幾十年，說，它的力量不是在它不彎，是在它彎了還能回來。",q:"你怎麼從不好的狀態回來？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c37",n:37, zh:"霧晨", en:"Morning Haze", hex:"#E0DCD4",bg:["#B8B4AC","#E0DCD4"],m:"麵包師傅的學徒每天最早到，霧還沒散，烤爐剛剛點起來，什麼都還不確定。但他說，他喜歡那個時刻，不是因為清楚，是因為他知道自己在對的地方，做對的事。",q:"有什麼事你還看不清楚？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c38",n:38, zh:"牙溫", en:"Ivory Warmth", hex:"#E8DEC0",bg:["#C8B898","#E8DEC0"],m:"收藏家把那塊象牙拿到光下，說，象牙不是白的，是微微黃的，有時間的溫度。他說，他不喜歡太白太潔淨的東西，會讓他覺得還沒開始，有點時間痕跡的，才讓他覺得真實。",q:"什麼讓你覺得自己是真實的？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c39",n:39, zh:"白霧", en:"White Mist", hex:"#E8E4E0",bg:["#C8C4C0","#E8E4E0"],m:"山裡的霧不是突然來的，是慢慢聚攏的。嚮導說，霧讓你看不遠，但也讓你不得不看清楚眼前那一步。有時候，看不見遠方，反而是最好的時機，讓你把眼前的事做好。",q:"有什麼感覺你說不清楚？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c40",n:40, zh:"稻暖", en:"Rice Warmth", hex:"#F0E8D8",bg:["#D8C8A8","#F0E8D8"],m:"收割完的田裡，稻草鋪了一地。農人說，他從來不嫌它，他用它鋪床、蓋屋頂、給牲口取暖。他說，平凡的事物，換一個眼光去用它，它是生活隱藏的美好禮物。",q:"什麼一直在支持你？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c41",n:41, zh:"暖金", en:"Warm Gold", hex:"#F5E6C8",bg:["#D8C8A8","#F5E6C8"],m:"慶祝的時刻,在杯沿閃爍。喜悅不需要理由,有時候只是因為你走到了這裡,只是因為你還在,還願意舉起杯子,對自己說一聲「辛苦了」。",q:"今天有什麼小事讓你開心？",s:"不需要立刻回答,先感受就好。",tex:"marble"},
+  {id:"c42",n:42, zh:"新葉光", en:"Fresh Leaf", hex:"#72A030",bg:["#508018","#72A030"],m:"春天第一片新葉是最嫩的綠，透著光，薄薄的，風一吹就抖。但它就是從那麼小開始，一天一天，到了夏天，整棵樹都是它的顏色。",q:"你現在什麼正在開始？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c43",n:43, zh:"芽光", en:"Sprout Light", hex:"#8AAA50",bg:["#688030","#8AAA50"],m:"春天剛萌出來的葉，對著光是透的，綠得像有人在裡面打了燈。藥草師說，這個時候的葉最有生氣，因為它還沒決定它要長成什麼，它所有的可能性都在長大中。",q:"你最近在長成什麼樣子？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c44",n:44, zh:"野息", en:"Wild Breath", hex:"#8A9868",bg:["#607040","#8A9868"],m:"那片荒原沒有人開墾，風一來，整片草都伏下去，風走了，又站起來。旅人問，那裡什麼都沒有，你走它幹什麼？老人說，有時候你需要一個什麼都沒有的地方，才知道自己有什麼。",q:"你需要什麼樣的空間？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c45",n:45, zh:"木灰", en:"Wood Ash", hex:"#A8A898",bg:["#787868","#A8A898"],m:"草木灰是植物燒完之後的樣子，顏色是中性的，淡的，什麼都不主張。陶藝師說，她喜歡用它上釉，因為它不搶任何東西的風頭，卻讓其他顏色都更好看了。",q:"你正在放下什麼？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c46",n:46, zh:"野草息", en:"Wild Grass", hex:"#4A7A38",bg:["#2C5020","#4A7A38"],m:"牆角的野草被拔掉了一次，兩週後又長回來了。同樣的位置，同樣的樣子，像是什麼都沒發生過。鄰居說，你每次拔它，它每次都回來，後來她就不拔了。",q:"有什麼你一直沒有放棄？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c47",n:47, zh:"苔石", en:"Moss Stone", hex:"#5A7048",bg:["#385028","#5A7048"],m:"石板路的縫裡長著苔蘚，深深的綠，沉沉的。沒有人替它澆水，也沒有人特別去看它。路過的孩子說，它看起來很老了。老人說，不是老，是更穩定了，你要分清楚。",q:"有誰一直在你旁邊你沒特別注意？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c48",n:48, zh:"葉深", en:"Leaf Depth", hex:"#384E30",bg:["#203018","#384E30"],m:"村裡的老樹匠說，你記得那朵花，但你有沒有注意到葉子？葉子沒有被看見，但沒有它，花就浮在空氣裡，沒有地方站。他說，最重要的東西，往往是你不注意的那個。",q:"有什麼你忽略了很久？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c49",n:49, zh:"草息", en:"Herb Breath", hex:"#A2B5A0",bg:["#85A085","#A2B5A0"],m:"古老的智慧,生長在荒野。它不需要肥沃的土壤,不需要精心的照顧,自有生命之道。那個道,是它自己走出來的,不是誰教的。",q:"你最確定的一件事是什麼？",s:"不需要立刻回答,先感受就好。",tex:"cloud"},
+  {id:"c50",n:50, zh:"竹息", en:"Bamboo", hex:"#5A8860",bg:["#3A6040","#5A8860"],m:"笛匠把竹子截下來，對著光看了看，說，好的竹子要空心，不能塞滿東西。他用它做出來的笛，聲音能穿過整個村子。那個聲音，是因為裡面有空間才有的。",q:"你現在心裡有空間嗎？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c51",n:51, zh:"林息", en:"Forest Breath", hex:"#3A6848",bg:["#224830","#3A6848"],m:"旅人說，她進過雨林一次。那種豐盛讓她喘不過氣，不是因為悶，是因為每個方向都有東西在長，每一步都有新的聲音和氣味，你不知道要先感受哪一個。她說，那讓她想到自己某些時期。",q:"你現在擁有什麼？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c52",n:52, zh:"森深", en:"Forest Deep", hex:"#2A5038",bg:["#183028","#2A5038"],m:"樵夫說，森林看起來是一棵一棵的樹，但地底下，根和根是連著的。他說，你在林子裡站著，以為你是一個人，但你從來不是。那些連結，你看不見，但它一直在那裡。",q:"有什麼事你還沒搞懂？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c53",n:53, zh:"荷光", en:"Lotus Light", hex:"#E0F4E8",bg:["#C0D8D0","#E0F4E8"],m:"冰涼又溫柔,清新中帶著甜。像一陣風吹過額頭,瞬間讓思緒變得清醒。輕盈,不沉重,但卻能讓你重新呼吸。",q:"在很難的時候你靠什麼撐過去？",s:"不需要立刻回答,先感受就好。",tex:"cloud"},
+  {id:"c54",n:54, zh:"瓷青", en:"Celadon Glow", hex:"#3A9A88",bg:["#1F6A5C","#3A9A88"],m:"陶藝師說，青瓷的顏色是進窯之後自己燒出來的，她每次打開窯都不知道會是什麼樣子。她學會了等，學會了接受，她說，最美的那一批，往往是她最沒有預期的。",q:"誰最了解你？",s:"不需要立刻回答，先感受就好。",tex:"fish"},
+  {id:"c55",n:55, zh:"薄荷息", en:"Mint", hex:"#5AB8A0",bg:["#388870","#5AB8A0"],m:"藥草師把一把新鮮薄荷放在客人面前，說，先聞一下。客人吸了一口氣，眼睛亮了一點。不是因為問題解決了，是因為那一口氣讓她清醒了一下，然後她自己知道該怎麼辦了。",q:"什麼讓你一下子清醒？",s:"不需要立刻回答，先感受就好。",tex:"fish"},
+  {id:"c56",n:56, zh:"苔深", en:"Deep Moss", hex:"#2A7A58",bg:["#1A5C40","#2A7A58"],m:"石板路的縫隙裡長出了苔蘚，沒有人種，也沒有人澆水。那個綠，安靜地在那裡，就這樣長著。路過的人要蹲下來才看得見，但它一直都在。",q:"有什麼在你身上慢慢變多？",s:"不需要立刻回答，先感受就好。",tex:"bamboo"},
+  {id:"c57",n:57, zh:"冰息", en:"Ice Breath", hex:"#70B8B0",bg:["#4A9090","#70B8B0"],m:"冰川每年只移動幾公分，看起來什麼都沒有在發生。但幾千年後，它走過的地方，是一整條山谷。旅人站在那個谷裡，想不到有什麼東西能這麼慢、這麼有力量。",q:"有什麼在你不注意的時候改變了？",s:"不需要立刻回答，先感受就好。",tex:"fish"},
+  {id:"c58",n:58, zh:"晨露", en:"Morning Dew", hex:"#B8D0C8",bg:["#88A8A0","#B8D0C8"],m:"清晨的草葉上有露水，每一滴都是夜裡積的。太陽一出來，它們安靜地消失了，不留痕跡，但那片草卻因為它喝飽了水，整個早上都是最飽和的綠。",q:"有什麼你知道不會長久？",s:"不需要立刻回答，先感受就好。",tex:"fish"},
+  {id:"c59",n:59, zh:"海岸", en:"Coast", hex:"#5090A0",bg:["#306878","#5090A0"],m:"燈塔守燈人說，他最喜歡站在海岸線上，那裡，浪每天都來，每天都退，兩件完全不同的事在這裡相遇，誰也沒有把誰淹掉，但兩邊都因為對方有了形狀。",q:"你和什麼之間需要一條線？",s:"不需要立刻回答，先感受就好。",tex:"fish"},
+  {id:"c60",n:60, zh:"湖心", en:"Lake Heart", hex:"#4A9898",bg:["#2A6868","#4A9898"],m:"她划船到湖的正中間，把槳放下來，讓船自己漂著。四面都是岸，四面都是遠。她說，只有在那裡，她才覺得思緒能攤開來，不會馬上被拉走。",q:"有什麼事你還沒看懂？",s:"不需要立刻回答，先感受就好。",tex:"fish"},
+  {id:"c61",n:61, zh:"泉清", en:"Clear Spring", hex:"#88C0C0",bg:["#5898A0","#88C0C0"],m:"挖井人說，泉水不是你做出來的，是你找出來的。他挖了一輩子的井，每一次找到泉，都不是在他預期的地方。他說，他學會了一件事：放下你以為它會在哪裡的那個想法。",q:"有什麼是你一直可以依賴的？",s:"不需要立刻回答，先感受就好。",tex:"fish"},
+  {id:"c62",n:62, zh:"藍霧", en:"Blue Mist", hex:"#B4C7D9",bg:["#90A8C0","#B4C7D9"],m:"清晨的薄霧,模糊了遠山的輪廓。世界變得柔軟,邊界不再那麼銳利。在這片寧靜裡,你終於聽見了自己的呼吸。",q:"有什麼你很難解釋？",s:"不需要立刻回答,先感受就好。",tex:"cloud"},
+  {id:"c63",n:63, zh:"藍寂", en:"Sea Depth", hex:"#1A4A8A",bg:["#0E2A5C","#1A4A8A"],m:"漁夫說，他出海最怕的不是風浪，是那種太藍太深的海，深到你不知道底下有什麼，也不知道那個「不知道」是讓你害怕，還是讓你想靠近。他每次還是划過去了。",q:"什麼讓你很難動搖？",s:"不需要立刻回答，先感受就好。",tex:"cloud"},
+  {id:"c64",n:64, zh:"湖沉", en:"Lake Sink", hex:"#3A5080",bg:["#203060","#3A5080"],m:"湖邊的老人每天來坐，不帶魚竿，只是看。他說，湖面有風有波，但湖底是另一個世界，安靜，慢，什麼都在，但什麼都不急。他說，他來這裡是為了記得那種感覺。",q:"有什麼你放在心裡最底下？",s:"不需要立刻回答，先感受就好。",tex:"cloud"},
+  {id:"c65",n:65, zh:"靛深", en:"Indigo Deep", hex:"#2A3A6A",bg:["#161E48","#2A3A6A"],m:"染布要一遍一遍來，每一遍都是同樣的動作，泡進去、拿出來、晾著，再泡。顏色就這樣一層一層加深，從淺藍到深靛，沒有捷徑，但每一遍都算數。",q:"你現在最深的感受是什麼？",s:"不需要立刻回答，先感受就好。",tex:"cloud"},
+  {id:"c66",n:66, zh:"深海藍", en:"Deep Ocean", hex:"#2E4A6B",bg:["#1A3050","#2E4A6B"],m:"深海的寂靜,包容一切暗湧。表面可能是波濤,但在深處,一切都是穩定的。你在那個深處找到了力量,一種不被外界動搖的穩定。",q:"有什麼一直讓你覺得穩？",s:"不需要立刻回答,先感受就好。",tex:"dragon"},
+  {id:"c67",n:67, zh:"墨色", en:"Ink", hex:"#162850",bg:["#0A1430","#162850"],m:"抄書人把羽毛筆蘸進墨水的那一刻，停了一秒。筆尖還沒碰到紙，但他已經知道自己要寫什麼了。那一秒，他覺得整個故事都在筆裡等著，只要他開始。",q:"有什麼已經成為你的一部分？",s:"不需要立刻回答，先感受就好。",tex:"cloud"},
+  {id:"c68",n:68, zh:"暮藍", en:"Dusk Blue", hex:"#2A4060",bg:["#162438","#2A4060"],m:"鐘樓的守時人說，黃昏是最難撥的時刻，光和暗同時存在，你說哪個是主角都說不準。她每次都在那個時刻停一下，讓自己在兩種光裡都待一會兒，才繼續。",q:"一天快結束的時候你在想什麼？",s:"不需要立刻回答，先感受就好。",tex:"cloud"},
+  {id:"c69",n:69, zh:"夜緩", en:"Night Slow", hex:"#0E1E40",bg:["#060E28","#0E1E40"],m:"守夜人說，很多人以為夜空是空的，其實不是，是滿的。你要讓眼睛先習慣黑暗，等一會兒，星星才慢慢出來。不是星星後來才有的，是你的眼睛準備好了。",q:"什麼讓你覺得世界很大？",s:"不需要立刻回答，先感受就好。",tex:"cloud"},
+  {id:"c70",n:70, zh:"蘭夜", en:"Orchid Night", hex:"#483860",bg:["#302848","#483860"],m:"夜市散了，香料師還沒收攤。她說，夜蘭只在晚上開，白天你完全不知道它在那裡。但入夜之後，整條街最深的香，是它的。她說，有些東西，你要等到夜裡才知道它有多好。",q:"有什麼只有你自己知道？",s:"不需要立刻回答，先感受就好。",tex:"cloud"},
+  {id:"c71",n:71, zh:"草紫", en:"Lavender Herb", hex:"#A8A0C0",bg:["#807898","#A8A0C0"],m:"旅館管家說，她在每個枕頭下都放薰衣草。她說，她最在意的事，就是讓客人在這裡能放下來，不用想事情，不用表現什麼，就只是好好休息。她說，那是她能給人最好的東西。",q:"有什麼你記得很久了？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c72",n:72, zh:"藤垂", en:"Hanging Vine", hex:"#B0A8C8",bg:["#888098","#B0A8C8"],m:"老宅的紫藤爬了五十年，現在已經長過牆，垂到另一邊去了。沒有人修剪它，也沒有人規劃它的方向。主人說，它的路，比她聰明，她就讓它去了。",q:"有什麼事一直還沒解決？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c73",n:73, zh:"煙淡", en:"Faint Smoke", hex:"#C0B8C8",bg:["#988898","#C0B8C8"],m:"那條山路她走過很多次，但霧天走起來完全不一樣。手伸出去看不見指尖，前面的路也消失了。她停下來，然後發現，腳其實知道怎麼走。不是她的眼睛帶她走的，是她的身體跟心。",q:"有什麼在你生命裡慢慢淡了？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c74",n:74, zh:"紫霧", en:"Purple Mist", hex:"#C8B4D0",bg:["#A890B0","#C8B4D0"],m:"記憶中的薰衣草田,香氣還在風裡徘徊。時光輕柔地把一切包裹起來,留下的不是清晰的畫面,而是一種溫暖的氛圍,一種「曾經美好」的確信。",q:"你現在是什麼心情？",s:"不需要立刻回答,先感受就好。",tex:"cloud"},
+  {id:"c75",n:75, zh:"尾孤", en:"Lone Iris", hex:"#704868",bg:["#503050","#704868"],m:"畫師說，鳶尾讓他困擾了很多年，你說它是紫的，它帶著藍；你說它是藍的，它又明明是紫的。後來他放棄分類，也不想要命名的那一刻，它是最美的。",q:"有什麼你說不清楚自己是什麼感覺？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c76",n:76, zh:"嵐紫", en:"Purple Haze", hex:"#907890",bg:["#685870","#907890"],m:"傍晚的山嵐是紫的，不是因為什麼神秘的原因，是光線和霧氣在那個時刻剛好這樣相遇。山寺的僧侶說，很多美麗的東西都是這樣的，不是刻意的，是你剛好在那裡，它剛好就在。",q:"有什麼你還在想？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c77",n:77, zh:"芋柔", en:"Soft Taro", hex:"#C0A8B8",bg:["#988090","#C0A8B8"],m:"那碗芋頭湯沒有什麼特別的材料，但喝過的人都說，是家的味道。廚師說，她不知道為什麼，她只是每次都認真做。她說，有些東西不是因為特別才讓人記得，是因為它讓你回到自己。",q:"你最柔軟的地方在哪裡？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c78",n:78, zh:"暮薄", en:"Thin Twilight", hex:"#C0A8C0",bg:["#987898","#C0A8C0"],m:"傍晚的廚房裡，母親在切菜，光線從窗子進來，剛好打在她的手上。沒有人說話，只有刀聲和香氣。多年以後，那個孩子說，那是她記憶裡最安靜的顏色。",q:"你在猶豫什麼？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c79",n:79, zh:"胭紅", en:"Carmine", hex:"#CC2E60",bg:["#A01840","#CC2E60"],m:"村子後山的杜鵑，沒有人替它規劃開花的時間。春天一到，它就開了，開得毫不猶豫，整片山坡都染成那個紅。村民說，這棵樹年年開，從來不問今年適不適合。",q:"什麼讓你覺得很活著？",s:"不需要立刻回答，先感受就好。",tex:"dragon"},
+  {id:"c80",n:80, zh:"薔野", en:"Wild Bramble", hex:"#B83040",bg:["#882030","#B83040"],m:"那叢薔薇沒有人種，就這樣長在村子外面的石牆上。每年春天，沒有任何人特別去看它，但它自己就開了，開得滿滿的，一點都不客氣。",q:"有什麼你不需要別人同意就很確定？",s:"不需要立刻回答，先感受就好。",tex:"dragon"},
+  {id:"c81",n:81, zh:"染深", en:"Deep Dye", hex:"#9A1838",bg:["#700818","#9A1838"],m:"老染匠說，胭紅要染得深，布要泡上三天才能出那個顏色。她說，那個深，不是加出來的，是時間留進去的。她一次都沒有偷工，因為她知道，顏色不會騙人。",q:"誰或什麼對你影響最深？",s:"不需要立刻回答，先感受就好。",tex:"dragon"},
+  {id:"c82",n:82, zh:"霞暮", en:"Dusk Glow", hex:"#C84858",bg:["#A03040","#C84858"],m:"旅館老闆娘送走最後一批客人，站在門口目送他們走進晚霞裡。粉紅和橘紅把整條路染成了另一種顏色。她看著看著，心裡升起一種淡淡的溫暖，是某種「好好完成了」的感覺。",q:"你道別過什麼？",s:"不需要立刻回答，先感受就好。",tex:"dragon"},
+  {id:"c83",n:83, zh:"粉透", en:"Translucent Pink", hex:"#E0607C",bg:["#B83858","#E0607C"],m:"調色師把那瓶顏料拿到光下，裡面的粉紅透了出來，像是有什麼從裡面點亮的。她說，這個顏色只有在光裡才看得出它真正的樣子，你要對著它，它才給你看。",q:"有什麼你藏不住？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c84",n:84, zh:"含苞", en:"Sealed Bud", hex:"#881428",bg:["#600010","#881428"],m:"花販說，他最喜歡賣的就是含苞的，顏色最深，能量都還醞釀在裡面，沒有散掉。他說，開了的花美，但含苞的花，讓人想等。那個等，是有重量的信任。",q:"有什麼話你還沒說？",s:"不需要立刻回答，先感受就好。",tex:"dragon"},
+  {id:"c85",n:85, zh:"梅寒", en:"Cold Plum", hex:"#A83850",bg:["#802840","#A83850"],m:"冬天最冷的那一週，村子後面的梅樹開了。沒有其他花，沒有葉子，只有那一樹粉紅在灰白的天空下。來看的人都說不出話，只是站著，覺得有什麼東西在心裡被碰觸了。",q:"在很難的時候你怎麼還撐著？",s:"不需要立刻回答，先感受就好。",tex:"dragon"},
+  {id:"c86",n:86, zh:"石榴", en:"Pomegranate", hex:"#902840",bg:["#681828","#902840"],m:"市集裡有人切開一顆石榴，裡面每一粒都是紅寶石的顏色，密密麻麻，飽滿到快要溢出來。外皮看起來粗糙普通，但打開來，是一整個豐盛的世界。",q:"你現在感覺最充實的是什麼？",s:"不需要立刻回答，先感受就好。",tex:"dragon"},
+  {id:"c87",n:87, zh:"藥放", en:"Blooming Peony", hex:"#B87880",bg:["#906068","#B87880"],m:"芍藥開的時候，整個花球大得讓人覺得不真實，粉紅色層層疊疊，飽滿，張揚，毫不保留。它就那樣開著，沒有任何道歉的樣子。路過的人都停下來了。",q:"有什麼你想全部給出去？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c88",n:88, zh:"藕紋", en:"Lotus Root Mark", hex:"#C89098",bg:["#A07078","#C89098"],m:"荷塘邊，有人把蓮藕切開，截面是白的，一個一個圓孔，整齊又乾淨。它長在最深的泥裡，但你打開它，是那樣的樣子。她看著那個截面，好像想到了過去。",q:"你給別人看的和你真實的，一樣嗎？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c89",n:89, zh:"蜜琥", en:"Honey Amber", hex:"#D4A430",bg:["#B88418","#D4A430"],m:"養蜂人把蜂巢拿到光下看，那層蜜是金黃帶點琥珀色的，很濃稠，慢慢流下來。他說，蜜的顏色深淺，是看蜂去了哪些花，每一批都不一樣，但都甜。",q:"有什麼是你花了很長時間才有的？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c90",n:90, zh:"薑黃", en:"Turmeric Gold", hex:"#E8A018",bg:["#C08010","#E8A018"],m:"染坊的師傅說，薑黃染出來的布料，剛染好是亮的金黃色，但它不刺眼。洗過曬過，顏色會慢慢變深，但不會褪，反而越來越沉穩。她說，好的顏色是會陪你變老的。",q:"有什麼事你越來越確定？",s:"不需要立刻回答，先感受就好。",tex:"dragon"},
+  {id:"c91",n:91, zh:"晨曦", en:"Dawn Light", hex:"#FFD8B8",bg:["#E8B898","#FFD8B8"],m:"天剛亮的時候，天空是淡淡的粉橘色。漁夫說，這個顏色出現，他就知道今天是個好天。那個顏色很柔，不刺眼，像是天空在說，可以出發了。",q:"今天什麼開始了？",s:"不需要立刻回答，先感受就好。",tex:"cloud"},
+  {id:"c92",n:92, zh:"珍珠光", en:"Pearl Glow", hex:"#F8F0E8",bg:["#E0D8D0","#F8F0E8"],m:"珍珠在光下轉動，每個角度都不一樣，有時候是白的，有時候是粉的，有時候帶點藍。珠寶師說，珍珠的美不是固定的，是會變的，要看你怎麼看它。",q:"你是什麼樣的人，要看在什麼情況下？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c93",n:93, zh:"薔薇粉", en:"Rose Pink", hex:"#F4D0D8",bg:["#D8B0B8","#F4D0D8"],m:"早春的薔薇剛開，顏色還很淡，粉粉的，嫩嫩的。園丁說，這個時候的薔薇最脆弱，但也最美。那個粉色，像是還沒準備好，但已經來了。",q:"有什麼剛進來你的生活？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c94",n:94, zh:"檸檬淡", en:"Pale Lemon", hex:"#F8F0C0",bg:["#E0D8A8","#F8F0C0"],m:"檸檬樹上，有些果子還沒熟，顏色是淡淡的黃綠色。果農說，這個時候的檸檬最酸，但汁最多。那個顏色，是還在路上的感覺。",q:"有什麼還在準備中？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c95",n:95, zh:"青檸", en:"Lime", hex:"#C8E8A8",bg:["#A8C888","#C8E8A8"],m:"市場裡的青檸，綠得很亮，酸得很爽快。攤販說，青檸跟檸檬不一樣，它的酸是清的，不會悶，聞一下就醒了。",q:"什麼讓你立刻清醒？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c96",n:96, zh:"水綠", en:"Water Green", hex:"#C0E0D0",bg:["#A0C8B8","#C0E0D0"],m:"湖水在淺灘的地方是透明的綠色，能看見底下的石頭和水草。游泳的人說，這個顏色讓她覺得安全，因為她知道底下有什麼。",q:"你讓別人看得清楚嗎？",s:"不需要立刻回答，先感受就好。",tex:"fish"},
+  {id:"c97",n:97, zh:"青瓷淡", en:"Pale Celadon", hex:"#D0E8E0",bg:["#B0C8C0","#D0E8E0"],m:"那只茶杯是青瓷的，顏色很淡，淡到幾乎看不出來。茶師說，這種顏色的杯子最好，不會搶茶的顏色，讓茶自己說話。",q:"有什麼你不說，但一直在？",s:"不需要立刻回答，先感受就好。",tex:"fish"},
+  {id:"c98",n:98, zh:"天青", en:"Sky Blue", hex:"#A8C8E0",bg:["#88A8C0","#A8C8E0"],m:"晴天的天空，藍得很乾淨，沒有一片雲。孩子們躺在草地上看天空，說，這個藍色好像會動，但又沒有動。那個藍，讓人想飛。",q:"有什麼讓你想要更自由？",s:"不需要立刻回答，先感受就好。",tex:"cloud"},
+  {id:"c99",n:99, zh:"晴空", en:"Clear Sky", hex:"#C8D8F0",bg:["#A8B8D0","#C8D8F0"],m:"雨後的天空，藍得很透，空氣也是濕濕的。曬衣服的人說，這種天空出現，她就知道衣服會乾得很快。那個藍，是乾淨的承諾。",q:"你答應過自己什麼？",s:"不需要立刻回答，先感受就好。",tex:"cloud"},
+  {id:"c100",n:100, zh:"丁香", en:"Lilac", hex:"#D8C8E8",bg:["#B8A8C8","#D8C8E8"],m:"庭院裡的丁香開了，淡淡的紫色，香氣很甜。鄰居說，丁香開的時候，整條街都是香的。那個紫色，是溫柔的提醒。",q:"有什麼一直在提醒你？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c101",n:101, zh:"薰衣草淡", en:"Pale Lavender", hex:"#E8D8F0",bg:["#C8B8D0","#E8D8F0"],m:"薰衣草田的盡頭，顏色變淡了，淡到幾乎是白的。但那個香還在，甚至更明顯。香水師說，有時候顏色淡了，香氣反而更清楚。",q:"有什麼越來越淡，但你反而越來越懂它？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c102",n:102, zh:"石灰", en:"Limestone", hex:"#E0D8C8",bg:["#C0B8A8","#E0D8C8"],m:"老牆是石灰砌的，白白的，但不是純白，是帶點灰的白。師傅說，石灰會呼吸，會吸水，會放水，它跟房子一起活著。",q:"有什麼陪著你走了很久？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c103",n:103, zh:"米白", en:"Rice White", hex:"#F0E8D8",bg:["#D0C8B8","#F0E8D8"],m:"米缸裡的米，白得很柔和，不刺眼。煮飯的人說，好的米要有點油光，那個白不是死白，是活的白。",q:"你身上什麼是有生命的？",s:"不需要立刻回答，先感受就好。",tex:"wave"},
+  {id:"c104",n:104, zh:"霜白", en:"Frost White", hex:"#F8F4F0",bg:["#E0DCD8","#F8F4F0"],m:"冬天的早晨，窗戶上結了一層霜，白得很細緻。小孩用手指在上面畫畫，那個白，是冬天的禮物。",q:"有什麼是你沒想到的，但得到了？",s:"不需要立刻回答，先感受就好。",tex:"marble"},
+  {id:"c105",n:105, zh:"月白", en:"Moon White", hex:"#F8F8F4",bg:["#E8E8E4","#F8F8F4"],m:"月光照在雪地上，白得幾乎看不見邊界。旅人說，這種白讓他覺得世界很安靜，安靜到可以聽見自己的心跳。",q:"什麼讓你安靜下來？",s:"不需要立刻回答，先感受就好。",tex:"cloud"}
+];
+    const state={selected:[],current:null,revealed:false,raf:0,resizeTimer:0,scrollTimer:0,overviewFilter:'all',overviewReturn:'welcome',sessionNote:''};
+    const $=id=>document.getElementById(id);
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    let _texId=0,spectrumObserver=null;
+
+    function lhex(hex,a){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16),t=v=>Math.max(0,Math.min(255,v)).toString(16).padStart(2,'0');return'#'+t(r+a)+t(g+a)+t(b+a);}
+    function getTex(type,hex){
+      const l=lhex(hex,52),d=lhex(hex,-30),pid='p'+(++_texId),m={
+        wave:`<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100"><defs><pattern id="${pid}" width="200" height="100" patternUnits="userSpaceOnUse"><path d="M0 30 Q50 10 100 30 Q150 50 200 30" fill="none" stroke="${l}" stroke-width="2.2" opacity=".55"/><path d="M0 60 Q50 40 100 60 Q150 80 200 60" fill="none" stroke="${l}" stroke-width="1.6" opacity=".42"/></pattern></defs><rect width="100%" height="100%" fill="url(#${pid})"/></svg>`,
+        dragon:`<svg xmlns="http://www.w3.org/2000/svg" width="80" height="60"><defs><pattern id="${pid}" width="40" height="30" patternUnits="userSpaceOnUse"><path d="M20 0 Q35 8 35 18 Q35 28 20 25 Q5 28 5 18 Q5 8 20 0Z" fill="none" stroke="${l}" stroke-width="1.5" opacity=".52"/></pattern></defs><rect width="100%" height="100%" fill="url(#${pid})"/></svg>`,
+        bamboo:`<svg xmlns="http://www.w3.org/2000/svg" width="120" height="160"><defs><pattern id="${pid}" width="40" height="60" patternUnits="userSpaceOnUse"><rect x="14" y="0" width="12" height="58" fill="${l}" opacity=".18"/><rect x="13" y="28" width="14" height="4" fill="${d}" opacity=".35" rx="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#${pid})"/></svg>`,
+        cloud:`<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200"><defs><pattern id="${pid}" width="150" height="100" patternUnits="userSpaceOnUse"><path d="M30 50 Q50 30 75 38 Q85 20 108 28 Q125 15 145 22 Q140 42 122 40 Q114 56 95 50 Q75 64 50 57Z" fill="none" stroke="${l}" stroke-width="1.5" opacity=".46"/></pattern></defs><rect width="100%" height="100%" fill="url(#${pid})"/></svg>`,
+        fish:`<svg xmlns="http://www.w3.org/2000/svg" width="90" height="80"><defs><pattern id="${pid}" width="30" height="24" patternUnits="userSpaceOnUse"><path d="M15 0 Q26 6 26 12 Q26 18 15 20 Q4 18 4 12 Q4 6 15 0Z" fill="none" stroke="${l}" stroke-width="1.5" opacity=".48"/></pattern></defs><rect width="100%" height="100%" fill="url(#${pid})"/></svg>`,
+        marble:`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><defs><pattern id="${pid}" width="400" height="400" patternUnits="userSpaceOnUse"><path d="M0 80 Q100 50 200 90 Q300 130 400 100" fill="none" stroke="${d}" stroke-width="1.5" opacity=".28"/><path d="M50 0 Q40 100 60 200 Q75 300 55 400" fill="none" stroke="${d}" stroke-width="1" opacity=".2"/></pattern></defs><rect width="100%" height="100%" fill="url(#${pid})"/></svg>`
+      };
+      return'data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(m[type]||m.marble)));
+    }
+
+    function randomCard(){
+      const available=CARDS.filter(card=>!state.selected.some(chosen=>chosen.id===card.id));
+      return available[Math.floor(Math.random()*available.length)];
+    }
+    function cardInk(hex){const r=parseInt(hex.slice(1,3),16)/255,g=parseInt(hex.slice(3,5),16)/255,b=parseInt(hex.slice(5,7),16)/255,lum=.2126*r+.7152*g+.0722*b;return lum>.69?{ink:'#302820',shadow:'0 1px 14px rgba(255,255,255,.42)'}:{ink:'#fff',shadow:'0 2px 18px rgba(0,0,0,.34)'};}
+    function getHueTone(hex){
+      const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16),max=Math.max(r,g,b),min=Math.min(r,g,b),brightness=(r*.299+g*.587+b*.114)/255,sat=(max-min)/255;let hue=0;
+      if(max!==min){if(max===r)hue=((g-b)/(max-min))%6;else if(max===g)hue=(b-r)/(max-min)+2;else hue=(r-g)/(max-min)+4;hue=Math.round(hue*60);if(hue<0)hue+=360;}
+      if(brightness<.25)return'dark';if(brightness>.75&&sat<.25)return'light';if(hue<45||hue>=315)return'warm';if(hue<100)return'warm-green';if(hue<200)return'cool';if(hue<270)return'deep-cool';return'neutral';
+    }
+    function themeOf(card){
+      const q=card.q;
+      if(/誰|別人|對方|孤單|照顧|謝謝|陪|生命裡/.test(q))return'relate';
+      if(/說|解釋|話|藏|出口|看見|知道/.test(q))return'speak';
+      if(/休息|累|安心|安靜|睡|擔心|放著|空間/.test(q))return'rest';
+      if(/想做|開始|期待|方向|提起勁|自由|出發|往哪|帶往|靠近/.test(q))return'move';
+      if(/放下|結束|道別|捨不得|給出去|離開|不管/.test(q))return'release';
+      if(/改變|轉變|準備|長成|走到|以前|記憶|忘|等待/.test(q))return'change';
+      if(/穩|力氣|支持|撐|重要|依賴|確定|動搖|留下/.test(q))return'ground';
+      return'self';
+    }
+    const FUSIONS={
+      'change|change':['兩張牌都指向正在變動的生命段落。它們融合後，不是在催促下一個答案，而是在提醒你：改變已經發生，現在需要的是認出自己正在成為誰。','這段變化真正想帶你走向哪一個新的自己？'],
+      'change|ground':['變動碰觸了你最想守住的東西。這組混色讓「改變」與「穩定」不再互相拉扯，而是一起指出：真正重要的根，不會因為你往前走就消失。','在改變裡，你最想保留的核心是什麼？'],
+      'change|move':['改變已經不只是心裡的感覺，它開始要求一個方向。這組混色把醞釀與行動接在一起，提醒你不必等到完全確定，才允許自己踏出小小的一步。','哪一個很小的行動，最能回應你正在經歷的改變？'],
+      'change|relate':['一段變化正在重新安排你與某個人的距離。這組混色談的不是誰對誰錯，而是關係需要一個新的相處方式，才能容得下現在的你。','這段關係需要怎樣的新距離，才會讓你比較自在？'],
+      'change|release':['有些改變之所以遲遲沒有完成，是因為心裡仍握著舊的形狀。這組混色不是催你告別，而是讓你看見：放下一點，新的位置才有機會出現。','你願意先鬆開哪一小部分，讓改變有地方發生？'],
+      'change|rest':['變化正在發生，但你的內在還需要時間跟上。這組混色允許前進與停留同時存在；休息不是離開過程，而是讓新的自己慢慢長穩。','在繼續之前，你需要先讓哪個部分休息一下？'],
+      'change|self':['外在的改變正在碰觸你對自己的理解。這組混色提醒你，真正的轉變不只是換一個狀態，而是重新承認：現在的感受也屬於真實的你。','這次改變，讓你重新看見自己哪一個部分？'],
+      'change|speak':['一個還在變化中的感受，開始想被說出來。這組混色不要求你立刻講得完整，只是在替那個尚未成形的真心，留一個可以出聲的位置。','如果只先說一句，什麼最接近你現在的真心？'],
+      'ground|ground':['兩張牌都在尋找可以站穩的位置。融合後，它們指向的不是更用力撐住，而是辨認哪些人、事與信念，真的能讓你把重量放下來。','此刻真正承接住你的，是什麼？'],
+      'ground|move':['一部分想往前，一部分想先確認腳下是否穩固。這組混色把勇氣與根基放在一起，提醒你：適合你的前進，不需要以失去安全感為代價。','怎樣的一步，既能前進，也不會讓你離開自己的中心？'],
+      'ground|relate':['你正在一段關係裡尋找可靠感。這組混色讓「依靠別人」與「站在自己這邊」同時存在，新的含意是：親近不必等於把自己的重量全部交出去。','在這段關係裡，什麼會讓你既靠近又安心？'],
+      'ground|release':['你想放下某些重量，也擔心放下之後失去支撐。這組混色提醒你，真正的穩定不是什麼都留住，而是知道哪些可以離開，自己仍然站得住。','有什麼已經可以放下，而你的根仍會留在原地？'],
+      'ground|rest':['你的內在正在尋找一個不必再撐住的地方。這組混色把穩定與休息融合成一種被承接的感覺：不是停止，而是終於可以把重量放回地面。','你需要什麼，才敢真正放鬆一點？'],
+      'ground|self':['你想確認的，不只是外在是否安全，而是自己心裡真正相信什麼。這組混色把穩定帶回內在，提醒你把判斷交還給那個最了解自己的部分。','撇開別人的答案，你心裡最確定的是什麼？'],
+      'ground|speak':['有一件你很確定的事，可能還沒有被好好說出來。這組混色讓沉默不再只是忍耐，而是替你找到一種穩定、清楚又不必傷害自己的表達方式。','你想用怎樣的方式，說出那個不想再動搖的立場？'],
+      'move|move':['兩股想往前的能量聚在一起，讓方向變得更鮮明。這組混色不是要你一次做完，而是在提醒你把力氣集中，先回應那件最有生命感的事。','如果今天只能往前一步，你會把這一步放在哪裡？'],
+      'move|relate':['你想往前，但這個方向也牽動著某段關係。這組混色提醒你，前進不一定要把誰留在身後；更重要的是讓彼此知道，你正在靠近什麼。','你想前進的方向，需要讓誰理解或參與？'],
+      'move|release':['新的方向已經出現，而舊的重量仍拉著你。這組混色把行動與放下變成同一件事：每往前一步，也是在替不再適合的部分騰出位置。','要走向真正想去的地方，你需要少帶著什麼？'],
+      'move|rest':['一部分想前進，另一部分想先停下來。這組混色不是拖延，而是在尋找一種不必離開自己感受、也能慢慢往前的節奏。','什麼樣的步伐，能讓你一邊前進、一邊照顧自己？'],
+      'move|self':['你想做的事，正把你帶回更真實的自己。這組混色提醒你，方向不只看結果，也看走在其中時，你是否覺得自己更完整、更有生命。','哪一個方向，讓你感覺最像自己？'],
+      'move|speak':['想前進的力量遇上了想表達的需要。這組混色顯示，下一步可能不是做得更多，而是先把意圖說清楚，讓行動不再孤單地發生。','在採取行動之前，你最需要說清楚什麼？'],
+      'relate|relate':['兩張牌都把注意力帶向關係。融合後，它們不只是在問你和誰靠近，而是在問：這份連結裡，你是否也有被看見、被承接的位置。','在你在意的關係裡，自己還需要被怎樣地看見？'],
+      'relate|release':['你在意一段連結，也感覺有些部分需要鬆開。這組混色不是要你離開誰，而是辨認什麼樣的牽繫已經太緊，讓愛與自由都失去空間。','這段關係裡，放鬆哪一個抓得太緊的地方，會讓彼此更自在？'],
+      'relate|rest':['你可能很習慣照顧關係，卻忘了關係也應該讓你休息。這組混色提醒你，真正的靠近不必一直付出力氣，它也可以是一個讓你放下防備的地方。','和誰在一起時，你可以不用撐著？'],
+      'relate|self':['關係讓你看見了自己的一個部分。這組混色不是用別人的眼光定義你，而是邀請你分辨：在靠近對方時，哪些感受讓你更認識真正的自己。','這段關係照見了你哪一個平常不容易看見的部分？'],
+      'relate|speak':['你在意的可能不只是把話說完，而是希望被某個人真正理解。這組混色把關係與表達融合在一起，提醒你先靠近自己的真心，再選擇能被聽見的方式。','有一句什麼話，是你希望對方不只聽見，也能理解的？'],
+      'release|release':['兩張牌都指向鬆開與告別。融合後，它們不是要求你立刻放下，而是讓你分辨：哪些仍值得珍惜，哪些只是在消耗力氣地被握住。','你願意先少握緊一點的是什麼？'],
+      'release|rest':['你不是沒有前進，只是有些疲累需要先被放下。這組混色把休息變成一種溫柔的釋放：不再逼自己維持原來的樣子，讓空間慢慢回來。','今天可以允許自己不再勉強的是什麼？'],
+      'release|self':['放下某些東西，也可能讓你暫時不知道自己是誰。這組混色提醒你，離開舊的角色並不會讓你變得空白，反而讓更真實的部分有機會出現。','如果不再扮演那個熟悉的角色，你想成為怎樣的自己？'],
+      'release|speak':['有些話只有在放下防備後才說得出來，也有些話說出來之後才真正能放下。這組混色讓表達成為一個鬆開內在結的入口。','哪一句誠實的話，可能讓你心裡鬆一點？'],
+      'rest|rest':['兩張牌都在邀請你慢下來。融合後，休息不再只是暫停工作，而是把注意力帶回身體與感受，讓長久被忽略的需要重新有位置。','如果此刻不用證明任何事，你最想怎麼休息？'],
+      'rest|self':['安靜讓你更接近真實的自己。這組混色提醒你，很多答案不是想得更用力才出現，而是在不再催促自己的時候，慢慢被感覺到。','當你安靜下來，哪一個真實的感受最先出現？'],
+      'rest|speak':['你有話想說，但內在也需要先有安全與安靜。這組混色不是讓你繼續沉默，而是提醒你先找到能承接自己的節奏，再讓語言跟上。','怎樣的時間與空間，會讓你比較願意說出真心？'],
+      'self|self':['兩張牌都把注意力帶回你自己。融合後，它們不急著替你下定義，而是讓不同狀態的你同時存在；真實不一定只有一種樣子。','此刻的你，最希望哪一個部分被自己承認？'],
+      'self|speak':['一個真實的部分正在尋找語言。這組混色提醒你，表達不是把自己解釋得毫無縫隙，而是讓最重要的感受不再被藏到連自己都看不見。','如果不需要說得完美，你最想承認什麼？'],
+      'speak|speak':['兩張牌都指向尚未完整說出的內容。融合後，它們不是催你一次說完，而是幫你辨認哪一句最重要、最接近真心，值得先被好好聽見。','此刻最需要被說出來的那一句話是什麼？']
+    };
+    function buildBlendReading(cards){
+      const names=cards.map(c=>c.zh),tones=cards.map(c=>getHueTone(c.hex)),nameText=names.map(n=>'「'+n+'」').join('與'),hasWarm=tones.some(t=>t==='warm'||t==='warm-green'),hasCool=tones.some(t=>t==='cool'||t==='deep-cool'),hasDark=tones.includes('dark'),hasLight=tones.includes('light'),hasNeutral=tones.includes('neutral');
+      if(cards.length>2)return{title:names.join(' × '),en:'NEW MIX · '+cards.length+' COLORS',meaning:nameText+'同時出現，不代表你必須從中選出唯一答案。這組混色把不同方向的感受放進同一個空間：有些想靠近，有些想保留，有些還在等待。新的含意，是讓它們彼此聽見，再決定此刻由哪一個部分先帶路。',question:'這幾個顏色同時存在時，你最想先照顧哪一個部分？'};
+      const themes=cards.map(themeOf).sort(),fusion=FUSIONS[themes.join('|')];let meaning=fusion?.[0],question=fusion?.[1];
+      if(!meaning&&hasLight&&hasDark){meaning='明亮與深沉在這裡同時存在。清楚的部分與還說不明白的部分，都屬於現在的你。';question='面對這件事，你已經知道的是什麼，還不想急著知道的又是什麼？';}
+      else if(!meaning&&hasDark&&hasWarm){meaning='深處累積的感受遇上一股熱度，像是內在的火慢慢被看見；不必立刻爆發，但它已經不願再被完全忽略。';question='有什麼在心裡放了很久，現在開始想被看見？';}
+      else if(!meaning&&hasWarm&&hasCool){meaning='向外靠近的力量遇上向內整理的需要。它們不是矛盾，而是在尋找一種既能前進、也不必離開自己感受的節奏。';question='在前進與停留之間，你現在需要怎樣的節奏？';}
+      else if(!meaning){meaning='這兩張牌不再各自說話，而是形成一個新的內在方向：讓兩種感受彼此聽見，再一起決定現在最需要的是什麼。';question='如果這兩個顏色是你此刻的兩個部分，它們想一起告訴你什麼？';}
+      return{title:names.join(' × '),en:'NEW MIX · 2 COLORS',meaning:nameText+'相遇後，'+meaning,question};
+    }
+    function noteKey(){return 'soul-color-note-'+state.selected.map(card=>card.id).join('-');}
+    function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelector('.app').dataset.screen=id;}
+    function escapeText(value){return String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+    function colorFamily(card){
+      const hex=card.hex,r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16),max=Math.max(r,g,b),min=Math.min(r,g,b),sat=(max-min)/255,brightness=(r+g+b)/765;let hue=0;
+      if(sat<.13||brightness<.18||brightness>.88)return'neutral';
+      if(max!==min){if(max===r)hue=((g-b)/(max-min))%6;else if(max===g)hue=(b-r)/(max-min)+2;else hue=(r-g)/(max-min)+4;hue*=60;if(hue<0)hue+=360;}
+      if(hue<58||hue>=335)return'warm';if(hue<170)return'green';if(hue<255)return'blue';return'purple';
+    }
+    function renderOverview(query=''){
+      const term=query.trim().toLocaleLowerCase('zh-Hant'),cards=CARDS.filter(card=>(state.overviewFilter==='all'||colorFamily(card)===state.overviewFilter)&&(!term||[card.zh,card.en,card.hex,String(card.n),card.id].some(value=>String(value).toLocaleLowerCase('zh-Hant').includes(term))));
+      $('paletteCount').textContent=cards.length+' / '+CARDS.length+' CARDS';
+      if(!cards.length){$('paletteList').innerHTML='<p class="palette-empty">找不到符合的牌卡，換一個名稱、色碼或色系試試看。</p>';return;}
+      const order=['warm','green','blue','purple','neutral'],labels={warm:['暖色藏頁','WARM ARCHIVE'],green:['綠色藏頁','GREEN ARCHIVE'],blue:['藍色藏頁','BLUE ARCHIVE'],purple:['紫色藏頁','VIOLET ARCHIVE'],neutral:['中性色藏頁','NEUTRAL ARCHIVE']};
+      const tile=card=>{const contrast=cardInk(card.hex),number=String(Number(card.id.replace(/\D/g,''))).padStart(3,'0');return '<button class="palette-item palette-open" data-card-id="'+escapeText(card.id)+'" aria-label="查看完整牌卡：'+escapeText(card.zh)+'"><span class="palette-swatch" style="background:linear-gradient(158deg,'+escapeText(card.bg[0])+','+escapeText(card.bg[1])+');--mini-ink:'+contrast.ink+';--mini-shadow:'+contrast.shadow+'"><span class="palette-tex" style="background-image:url(&quot;'+getTex(card.tex,card.hex)+'&quot;)"></span><span class="palette-number">CARD '+number+'</span><span class="palette-hex">'+escapeText(card.hex.toUpperCase())+'</span><span class="palette-name"><strong>'+escapeText(card.zh)+'</strong><em>'+escapeText(card.en)+'</em></span></span><span class="palette-detail">查看完整牌卡</span></button>';};
+      $('paletteList').innerHTML=order.map(family=>{const group=cards.filter(card=>colorFamily(card)===family);if(!group.length)return'';return'<section class="spectrum-group" aria-labelledby="group-'+family+'"><div class="spectrum-heading"><h3 id="group-'+family+'">'+labels[family][0]+'</h3><span>'+labels[family][1]+' · '+group.length+'</span></div><div class="spectrum-grid">'+group.map(tile).join('')+'</div></section>';}).join('');
+    }
+    function openOverview(returnTo='welcome'){state.overviewReturn=returnTo;cancelAnimationFrame(state.raf);renderOverview($('paletteSearch').value);$('overviewBackTop').textContent=returnTo==='complete'?'回到本次解讀':'回到抽牌';showScreen('overview');window.scrollTo({top:0,behavior:reduced.matches?'auto':'smooth'});requestAnimationFrame(observeSpectrumGroups);setTimeout(()=>$('paletteSearch').focus(),80);}
+    function leaveOverview(){const target=state.overviewReturn==='complete'?'complete':'welcome';showScreen(target);window.scrollTo({top:0,behavior:reduced.matches?'auto':'smooth'});setTimeout(()=>$(target==='complete'?'copySummary':'startDraw').focus(),80);}
+    function cardMarkup(card){
+      const contrast=cardInk(card.hex),now=new Date(),date=now.getFullYear()+' 年 '+(now.getMonth()+1)+' 月';
+      return '<span class="card-band" style="--card-ink:'+contrast.ink+';--card-shadow:'+contrast.shadow+';color:var(--card-ink);text-shadow:var(--card-shadow)"><span class="card-band-bg" style="background:linear-gradient(158deg,'+escapeText(card.bg[0])+','+escapeText(card.bg[1])+')"></span><span class="card-band-tex" style="background-image:url(&quot;'+getTex(card.tex,card.hex)+'&quot;)"></span><span class="card-band-grad"></span><span class="card-band-glass"></span><span class="card-hex">'+escapeText(card.hex.toUpperCase())+'</span><span class="card-title"><strong id="dialogCardName">'+escapeText(card.zh)+'</strong><em>'+escapeText(card.en)+'</em></span></span><span class="card-body"><span class="card-label">此刻感受</span><span class="card-story">'+escapeText(card.m)+'</span><span class="card-divider"></span><span class="card-question">'+escapeText(card.q)+'</span><span class="card-hint">'+escapeText(card.s)+'</span><span class="card-footer"><span>初心色譜 · Soul Color</span><i>'+date+'</i></span></span>';
+    }
+    function openCardDialog(card){if(!card)return;$('zoomCard').innerHTML=cardMarkup(card);$('cardDialog').showModal();setTimeout(()=>$('dialogClose').focus(),30);}
+    function closeCardDialog(){if($('cardDialog').open)$('cardDialog').close();}
+    function playEditorialReveal(element){if(!element)return;element.classList.remove('is-entering');void element.offsetWidth;element.classList.add('is-entering');}
+    function observeSpectrumGroups(){
+      spectrumObserver?.disconnect();const groups=[...document.querySelectorAll('.spectrum-group')];
+      if(reduced.matches||!('IntersectionObserver'in window)){groups.forEach(group=>group.classList.add('in-view'));return;}
+      groups.forEach(group=>group.classList.add('reveal-pending'));
+      spectrumObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');spectrumObserver.unobserve(entry.target);}}),{threshold:.08,rootMargin:'0px 0px -8%'});
+      groups.forEach(group=>spectrumObserver.observe(group));
+    }
+    function currentReading(){
+      if(state.selected.length===1){const card=state.selected[0];return{title:card.zh,en:card.en+' · '+card.hex,meaning:card.m,question:card.q};}
+      return buildBlendReading(state.selected);
+    }
+    function renderComplete(){
+      const reading=currentReading(),now=new Date(),dateText=now.toLocaleDateString('zh-TW',{year:'numeric',month:'long',day:'numeric'}),readingNo='SC-'+now.getFullYear()+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0')+'-'+state.selected.map(card=>card.id.replace(/\D/g,'').padStart(3,'0')).join('·');state.sessionNote=$('note').value.trim();
+      $('readingDate').textContent=dateText;$('readingNumber').textContent=readingNo;
+      $('completeTitle').textContent=reading.title;$('completeEn').textContent=reading.en;
+      $('summaryColors').style.setProperty('--color-count',state.selected.length);$('summaryColors').innerHTML=state.selected.map(card=>{const contrast=cardInk(card.hex);return '<button class="summary-color" data-card-id="'+escapeText(card.id)+'" style="background:linear-gradient(145deg,'+escapeText(card.bg[0])+','+escapeText(card.bg[1])+');--summary-ink:'+contrast.ink+';--summary-shadow:'+contrast.shadow+'" aria-label="放大閱讀 '+escapeText(card.zh)+'"><strong>'+escapeText(card.zh)+'</strong><span>'+escapeText(card.hex.toUpperCase())+'</span></button>';}).join('');
+      $('completeStory').textContent=reading.meaning;$('completeQuestion').textContent='「'+reading.question+'」';
+      $('completeNote').innerHTML='<strong>此刻留下的文字</strong><span>'+escapeText(state.sessionNote||'這次沒有留下文字。你也可以只感受，不必回答。')+'</span>';
+      $('copyStatus').textContent='';showScreen('complete');playEditorialReveal(document.querySelector('.complete-wrap'));window.scrollTo({top:0,behavior:reduced.matches?'auto':'smooth'});setTimeout(()=>$('copySummary').focus(),80);
+    }
+    function finishReading(){if(!state.selected.length)return;clearTimeout(state.scrollTimer);$('scrollCue').classList.add('hidden');renderComplete();}
+    function summaryText(){const reading=currentReading(),colors=state.selected.map(card=>card.zh+' '+card.hex.toUpperCase()).join(' × ');return'初心色譜｜本次自我覺察\n\n'+colors+'\n'+reading.title+'\n\n'+reading.meaning+'\n\n「'+reading.question+'」\n\n我的筆記：'+(state.sessionNote||'未留下文字');}
+    async function copySummary(){
+      const text=summaryText();let copied=false;
+      try{await navigator.clipboard.writeText(text);copied=true;}catch(error){const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();copied=document.execCommand('copy');area.remove();}
+      $('copyStatus').textContent=copied?'已複製本次解讀，可以貼到自己的筆記裡。':'目前無法自動複製，請手動選取文字。';
+    }
+    function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight,maxLines=12){let line='',lines=[];for(const char of String(text)){const test=line+char;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=char;}else line=test;}if(line)lines.push(line);lines=lines.slice(0,maxLines);lines.forEach((value,index)=>ctx.fillText(value,x,y+index*lineHeight));return y+lines.length*lineHeight;}
+    function downloadReadingCard(){
+      const reading=currentReading(),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d'),W=1080,H=1600;canvas.width=W;canvas.height=H;
+      ctx.fillStyle='#F5EFE6';ctx.fillRect(0,0,W,H);ctx.strokeStyle='rgba(90,60,40,.12)';ctx.lineWidth=2;ctx.strokeRect(56,56,W-112,H-112);
+      for(let y=70;y<H-70;y+=12){ctx.strokeStyle='rgba(90,60,40,.018)';ctx.beginPath();ctx.moveTo(70,y);ctx.lineTo(W-70,y+2);ctx.stroke();}
+      ctx.textBaseline='top';ctx.fillStyle='#8D6B42';ctx.font='24px Georgia,serif';ctx.fillText('SOUL COLOR · THE PRIVATE SPECTRUM',90,92);
+      ctx.textAlign='right';ctx.fillStyle='#7B6C5E';ctx.font='22px Georgia,serif';ctx.fillText($('readingNumber').textContent,W-90,92);ctx.textAlign='left';
+      ctx.fillStyle='#2C251F';ctx.font='56px "Noto Serif TC","PMingLiU",serif';let y=190;y=wrapCanvasText(ctx,reading.title,90,y,W-180,72,3)+18;
+      ctx.fillStyle='#9B8268';ctx.font='italic 24px Georgia,serif';ctx.fillText(reading.en,90,y);y+=74;
+      const gap=4,totalWidth=W-180,bandWidth=(totalWidth-gap*(state.selected.length-1))/state.selected.length;
+      state.selected.forEach((card,index)=>{const x=90+index*(bandWidth+gap),gradient=ctx.createLinearGradient(x,y,x+bandWidth,y+130);gradient.addColorStop(0,card.bg[0]);gradient.addColorStop(1,card.bg[1]);ctx.fillStyle=gradient;ctx.fillRect(x,y,bandWidth,130);const contrast=cardInk(card.hex);ctx.fillStyle=contrast.ink;ctx.font='30px "Noto Serif TC","PMingLiU",serif';ctx.fillText(card.zh,x+20,y+28);ctx.font='18px ui-monospace,monospace';ctx.fillText(card.hex.toUpperCase(),x+20,y+78);});
+      y+=190;ctx.fillStyle='#66594E';ctx.font='30px "Noto Serif TC","PMingLiU",serif';y=wrapCanvasText(ctx,reading.meaning,90,y,W-180,52,9)+34;
+      ctx.strokeStyle='#A67B42';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(90,y);ctx.lineTo(160,y);ctx.stroke();y+=36;
+      ctx.fillStyle='#332A23';ctx.font='40px "Noto Serif TC","PMingLiU",serif';y=wrapCanvasText(ctx,'「'+reading.question+'」',90,y,W-180,62,5)+34;
+      ctx.fillStyle='#9A7A56';ctx.font='20px "Noto Serif TC","PMingLiU",serif';ctx.fillText('此刻留下的文字',90,y);y+=42;ctx.fillStyle='#706257';ctx.font='26px "Noto Serif TC","PMingLiU",serif';wrapCanvasText(ctx,state.sessionNote||'這次沒有留下文字。你也可以只感受，不必回答。',90,y,W-180,44,5);
+      ctx.strokeStyle='rgba(90,60,40,.18)';ctx.beginPath();ctx.moveTo(90,H-150);ctx.lineTo(W-90,H-150);ctx.stroke();ctx.fillStyle='#716255';ctx.font='22px "Noto Serif TC","PMingLiU",serif';ctx.fillText('初心色譜 · Soul Color',90,H-118);ctx.textAlign='right';ctx.fillStyle='#A67B42';ctx.font='italic 22px Georgia,serif';ctx.fillText($('readingDate').textContent,W-90,H-118);ctx.textAlign='left';
+      canvas.toBlob(blob=>{if(!blob){$('copyStatus').textContent='目前無法建立圖卡。';return;}const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='初心色譜-'+state.selected.map(card=>card.zh).join('-')+'.png';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('copyStatus').textContent='本次色光手札已儲存為圖片。';},'image/png');
+    }
+    function restartSession(){clearTimeout(state.scrollTimer);state.selected=[];state.current=null;state.revealed=false;state.sessionNote='';cancelAnimationFrame(state.raf);$('scrollCue').classList.add('hidden');showScreen('welcome');window.scrollTo({top:0,behavior:'auto'});setTimeout(()=>$('startDraw').focus(),50);}
+    function renderCardFace(card){
+      const front=$('cardFront'),contrast=cardInk(card.hex);front.style.setProperty('--card-ink',contrast.ink);front.style.setProperty('--card-shadow',contrast.shadow);front.classList.toggle('compact',card.m.length>92);front.classList.toggle('extra-compact',card.m.length>118);
+      $('cardBandBg').style.background=`linear-gradient(158deg,${card.bg[0]},${card.bg[1]})`;$('cardTexture').style.backgroundImage=`url('${getTex(card.tex,card.hex)}')`;
+      $('frontZh').textContent=card.zh;$('frontEn').textContent=card.en;$('frontHex').textContent=card.hex.toUpperCase();$('frontStory').textContent=card.m;$('frontQuestion').textContent=card.q;$('frontHint').textContent=card.s;const now=new Date();$('frontDate').textContent=now.getFullYear()+' 年 '+(now.getMonth()+1)+' 月';
+    }
+    function prepareDraw(){
+      clearTimeout(state.scrollTimer);state.current=randomCard(); state.revealed=false;$('scrollCue').classList.add('hidden');
+      $('cardButton').classList.remove('revealed'); $('cardButton').setAttribute('aria-label','翻開牌卡');
+      renderCardFace(state.current);
+      $('beforeReveal').classList.remove('hidden'); $('afterReveal').classList.add('hidden'); $('mixLabels').classList.add('hidden');
+      $('visualStatus').textContent='CARD '+String(state.selected.length+1).padStart(2,'0')+' · WAITING TO REVEAL';
+      $('stepText').textContent='第 '+(state.selected.length+1)+' 張／最多 4 張 · 翻開牌卡';
+      showScreen('draw');playEditorialReveal(document.querySelector('.reading'));drawWaitingBackground();
+      $('announcer').textContent='第 '+(state.selected.length+1)+' 張牌已抽出，請翻開牌卡';
+      window.scrollTo({top:0,behavior:reduced.matches?'auto':'smooth'}); setTimeout(()=>$('cardButton').focus(),80);
+    }
+    function revealCard(){
+      if(state.revealed||!state.current)return; state.revealed=true; state.selected.push(state.current);
+      $('cardButton').classList.add('revealed'); $('cardButton').setAttribute('aria-label','已翻開：'+state.current.zh+'。再次點擊可放大閱讀完整牌卡');
+      if(state.selected.length===1){$('readingZh').textContent=state.current.zh;$('readingEn').textContent=state.current.en+' · '+state.current.hex;$('readingStory').textContent=state.current.m;$('readingQuestion').textContent='「'+state.current.q+'」';}
+      else{const blend=buildBlendReading(state.selected);$('readingZh').textContent=blend.title;$('readingEn').textContent=blend.en;$('readingStory').textContent=blend.meaning;$('readingQuestion').textContent='「'+blend.question+'」';}
+      $('beforeReveal').classList.add('hidden'); $('afterReveal').classList.remove('hidden');
+      $('visualStatus').textContent='CARD '+String(state.selected.length).padStart(2,'0')+' · '+state.current.zh;
+      $('stepText').textContent=state.selected.length===1?'第 1 張／最多 4 張 · 聽見此刻':'已選 '+state.selected.length+' 張／最多 4 張 · 情緒相遇';
+      $('addCard').textContent=state.selected.length>=4?'已完成四色情緒混色':'再抽一張，加入混色'; $('addCard').disabled=state.selected.length>=4;
+      $('finishReading').textContent=state.selected.length===1?'就停在這一張':'完成這次解讀';
+      $('note').value=localStorage.getItem(noteKey())||''; $('savedStatus').textContent='';
+      renderLabels(); startBlendAnimation(state.selected);
+      playEditorialReveal(document.querySelector('.reading'));
+      $('announcer').textContent='翻開 '+state.current.zh+'，問題：'+state.current.q;
+      if(matchMedia('(max-width:860px)').matches){$('scrollCue').classList.remove('hidden');const initialY=window.scrollY;state.scrollTimer=setTimeout(()=>{if(window.scrollY<=initialY+80){$('readingZh').scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});$('readingZh').focus?.({preventScroll:true});}$('scrollCue').classList.add('hidden');},reduced.matches?0:1150);}
+    }
+    function renderLabels(){
+      $('mixLabels').innerHTML=state.selected.map(c=>'<div class="mix-label"><strong>'+c.zh+'</strong><span>'+c.hex+'</span></div>').join('');
+      $('mixLabels').classList.remove('hidden');$('mixLabels').classList.remove('reveal-mix');void $('mixLabels').offsetWidth;$('mixLabels').classList.add('reveal-mix');
+    }
+    function drawWaitingBackground(){
+      cancelAnimationFrame(state.raf); const canvas=$('blendCanvas'),box=$('visual'),dpr=Math.min(devicePixelRatio||1,2),w=Math.max(box.clientWidth,320),h=Math.max(box.clientHeight,420);
+      canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#0D0A07';ctx.fillRect(0,0,w,h);
+      const g=ctx.createRadialGradient(w*.5,h*.44,0,w*.5,h*.44,Math.min(w,h)*.48);g.addColorStop(0,'rgba(184,144,74,.12)');g.addColorStop(1,'rgba(13,10,7,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+    }
+    function startBlendAnimation(cards){
+      cancelAnimationFrame(state.raf); const canvas=$('blendCanvas'),parent=$('visual'),W=Math.max(parent.clientWidth,320),H=Math.max(parent.clientHeight,420),DPR=Math.min(devicePixelRatio||1,2);
+      canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+'px';canvas.style.height=H+'px';const ctx=canvas.getContext('2d');ctx.setTransform(DPR,0,0,DPR,0,0);
+      const n=cards.length,r=Math.min(W,H)*(n===1?.58:n===2?.50:n===3?.44:.40),positions=cards.map((_,i)=>({x:W*(i+1)/(n+1),y:H*.42}));
+      const phase=cards.map(()=>Math.random()*Math.PI*2),speed=cards.map(()=>.00028+Math.random()*.00016),amp=Math.min(W,H)*.028,start=performance.now(),fade=2200,delay=600;
+      function frame(now){
+        const elapsed=now-start;ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;ctx.fillStyle='#0D0A07';ctx.fillRect(0,0,W,H);
+        cards.forEach((c,i)=>{const entry=Math.max(0,elapsed-delay*i),t=reduced.matches?1:Math.min(1,entry/fade),eased=1-Math.pow(1-t,3),cx=positions[i].x+(reduced.matches?0:Math.sin(now*speed[i]+phase[i])*amp),cy=positions[i].y+(reduced.matches?0:Math.cos(now*speed[i]*.73+phase[i])*amp*.62),curR=r*eased*(reduced.matches?1:1+.045*Math.sin(elapsed*.00038+i*1.2));if(curR<=0)return;
+          const rg=ctx.createRadialGradient(cx,cy,0,cx,cy,curR);rg.addColorStop(0,c.hex+'FF');rg.addColorStop(.12,c.hex+'F5');rg.addColorStop(.24,c.hex+'E8');rg.addColorStop(.35,c.hex+'D0');rg.addColorStop(.46,c.hex+'B0');rg.addColorStop(.56,c.hex+'88');rg.addColorStop(.66,c.hex+'60');rg.addColorStop(.76,c.hex+'38');rg.addColorStop(.86,c.hex+'18');rg.addColorStop(.94,c.hex+'08');rg.addColorStop(1,c.hex+'00');ctx.globalCompositeOperation='lighten';ctx.globalAlpha=eased;ctx.fillStyle=rg;ctx.fillRect(0,0,W,H);
+        });
+        const allIn=reduced.matches?1:Math.min(1,Math.max(0,(elapsed-delay*(n-1))/fade)),breath=reduced.matches?.5:.5+.5*Math.sin(now*.0004);ctx.globalCompositeOperation='source-over';ctx.globalAlpha=allIn*.07*breath;const cg=ctx.createRadialGradient(W/2,H*.42,0,W/2,H*.42,Math.min(W,H)*.45);cg.addColorStop(0,'rgba(255,248,235,1)');cg.addColorStop(1,'rgba(255,248,235,0)');ctx.fillStyle=cg;ctx.fillRect(0,0,W,H);ctx.globalAlpha=1;
+        const fadeH=H*.3,fg=ctx.createLinearGradient(0,H-fadeH,0,H);fg.addColorStop(0,'rgba(13,10,7,0)');fg.addColorStop(.6,'rgba(13,10,7,.7)');fg.addColorStop(1,'rgba(13,10,7,1)');ctx.fillStyle=fg;ctx.fillRect(0,H-fadeH,W,fadeH);
+        if(!reduced.matches&&document.visibilityState==='visible')state.raf=requestAnimationFrame(frame);
+      } frame(performance.now());
+    }
+    $('startDraw').addEventListener('click',prepareDraw); $('openOverview').addEventListener('click',()=>openOverview('welcome')); $('overviewBackTop').addEventListener('click',leaveOverview); $('overviewBackBottom').addEventListener('click',()=>{state.overviewReturn='welcome';leaveOverview();setTimeout(prepareDraw,120)}); $('paletteSearch').addEventListener('input',event=>{renderOverview(event.target.value);requestAnimationFrame(observeSpectrumGroups);});
+    $('filterRow').addEventListener('click',event=>{const button=event.target.closest('[data-filter]');if(!button)return;state.overviewFilter=button.dataset.filter;document.querySelectorAll('.filter-chip').forEach(chip=>chip.classList.toggle('active',chip===button));renderOverview($('paletteSearch').value);requestAnimationFrame(observeSpectrumGroups);});
+    $('paletteList').addEventListener('click',event=>{const button=event.target.closest('[data-card-id]');if(button)openCardDialog(CARDS.find(card=>card.id===button.dataset.cardId));});
+    $('cardButton').addEventListener('click',()=>state.revealed?openCardDialog(state.current):revealCard()); $('revealButton').addEventListener('click',revealCard); $('scrollCue').addEventListener('click',()=>{$('readingZh').scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});$('scrollCue').classList.add('hidden');});
+    $('addCard').addEventListener('click',()=>{if(state.selected.length<4)prepareDraw();});
+    $('finishReading').addEventListener('click',finishReading);$('restart').addEventListener('click',restartSession);$('summaryRestart').addEventListener('click',restartSession);$('summaryOverview').addEventListener('click',()=>openOverview('complete'));$('copySummary').addEventListener('click',copySummary);$('downloadCard').addEventListener('click',downloadReadingCard);
+    $('summaryColors').addEventListener('click',event=>{const button=event.target.closest('[data-card-id]');if(button)openCardDialog(CARDS.find(card=>card.id===button.dataset.cardId));});
+    $('saveNote').addEventListener('click',()=>{if(!state.current)return;localStorage.setItem(noteKey(),$('note').value);$('savedStatus').textContent='已暫存在這台裝置';});
+    $('dialogClose').addEventListener('click',closeCardDialog);$('cardDialog').addEventListener('click',event=>{if(event.target===$('cardDialog'))closeCardDialog();});
+    window.addEventListener('resize',()=>{clearTimeout(state.resizeTimer);state.resizeTimer=setTimeout(()=>state.revealed?startBlendAnimation(state.selected):drawWaitingBackground(),180)});
+    reduced.addEventListener?.('change',()=>state.revealed?startBlendAnimation(state.selected):drawWaitingBackground());
+  </script>
+</body>
+</html>
