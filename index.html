@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>初心色譜｜自我覺察牌卡 SAMPLE</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%235a3c28'/%3E%3Cpath d='M32 13c2.6 9.5 6.7 13.6 16 16-9.3 2.4-13.4 6.5-16 16-2.6-9.5-6.7-13.6-16-16 9.3-2.4 13.4-6.5 16-16Z' fill='%23ead6ad'/%3E%3C/svg%3E">
   <style>
     :root{--paper:#f4efe7;--paper2:#ebe2d6;--ink:#2c251f;--muted:#786c61;--gold:#a67b42;--coffee:#5a3c28;--coffee-hover:#704b31;--night:#0d0a07;--line:rgba(75,57,40,.16);--focus:#8d6028}
     *{box-sizing:border-box}
@@ -64,6 +65,13 @@
     .app::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.16;background-image:repeating-linear-gradient(2deg,rgba(95,70,47,.025) 0,rgba(95,70,47,.025) 1px,transparent 1px,transparent 5px),repeating-linear-gradient(92deg,rgba(255,255,255,.045) 0,rgba(255,255,255,.045) 1px,transparent 1px,transparent 9px)}
     .app::after{opacity:.09;mix-blend-mode:multiply}
     .ambient,.soft-orbit{display:none}
+    .app[data-screen="welcome"] .ambient{display:block;opacity:1}
+    .app[data-screen="welcome"] .ambient i{filter:blur(40px);mix-blend-mode:normal}
+    .app[data-screen="welcome"] .ambient .g1{width:54%;height:54%;right:-12%;top:-10%;opacity:.6;background:radial-gradient(circle,rgba(239,151,113,.68) 0%,rgba(226,136,121,.3) 40%,transparent 72%);animation:welcomeGlowA 20s ease-in-out infinite}
+    .app[data-screen="welcome"] .ambient .g2{width:58%;height:58%;left:-18%;bottom:-16%;opacity:.54;background:radial-gradient(circle,rgba(113,157,140,.54) 0%,rgba(137,174,151,.25) 42%,transparent 72%);animation:welcomeGlowB 24s ease-in-out infinite}
+    .app[data-screen="welcome"] .ambient .g3{width:48%;height:48%;left:35%;top:26%;opacity:.5;background:radial-gradient(circle,rgba(178,126,167,.56) 0%,rgba(206,158,184,.24) 42%,transparent 72%);animation:welcomeGlowC 26s ease-in-out infinite}
+    .app[data-screen="welcome"] .ambient::before{content:"";position:absolute;width:46%;height:46%;left:-8%;top:-14%;border-radius:50%;filter:blur(42px);opacity:.62;background:radial-gradient(circle,rgba(245,192,82,.64) 0%,rgba(244,198,105,.24) 42%,transparent 72%);animation:welcomeGlowD 22s ease-in-out infinite}
+    .app[data-screen="welcome"] #welcome{background:radial-gradient(ellipse 48% 62% at 24% 54%,rgba(255,252,245,.62),rgba(255,252,245,.12) 66%,transparent 86%)}
     .brand{letter-spacing:.16em}.brand small{letter-spacing:.2em}.deck-count{letter-spacing:.11em}.eyebrow{letter-spacing:.16em}.step{letter-spacing:.12em}.en{letter-spacing:.055em}.card-title em,.palette-name em{letter-spacing:.055em}.visual-status{letter-spacing:.14em}.back small{letter-spacing:.18em}
     .primary{border-radius:999px;box-shadow:0 5px 14px rgba(90,60,40,.13)}
     .secondary{min-height:44px;padding:10px 2px;border:0;border-bottom:1px solid rgba(90,60,40,.38);border-radius:0;background:transparent;box-shadow:none}
@@ -110,6 +118,21 @@
     .complete-wrap.is-entering .reading-meta,.complete-wrap.is-entering>.eyebrow,.complete-wrap.is-entering>h2,.complete-wrap.is-entering>.en,.complete-wrap.is-entering .summary-colors,.complete-wrap.is-entering .complete-story,.complete-wrap.is-entering .complete-question,.complete-wrap.is-entering .complete-note,.complete-wrap.is-entering .complete-actions,.complete-wrap.is-entering .reading-signature{animation:editorialRise .95s cubic-bezier(.22,.7,.2,1) both}
     .complete-wrap.is-entering>.eyebrow{animation-delay:.08s}.complete-wrap.is-entering>h2{animation-delay:.16s}.complete-wrap.is-entering>.en{animation-delay:.23s}.complete-wrap.is-entering .summary-colors{animation-delay:.3s}.complete-wrap.is-entering .complete-story{animation-delay:.4s}.complete-wrap.is-entering .complete-question{animation-delay:.5s}.complete-wrap.is-entering .complete-note{animation-delay:.58s}.complete-wrap.is-entering .complete-actions{animation-delay:.67s}.complete-wrap.is-entering .reading-signature{animation-delay:.76s}
     .spectrum-group.reveal-pending{opacity:0;transform:translateY(18px)}.spectrum-group.reveal-pending.in-view{opacity:1;transform:translateY(0);transition:opacity 1s ease-out,transform 1s cubic-bezier(.22,.7,.2,1)}
+    @keyframes welcomeGlowA{50%{transform:translate(-7%,8%) scale(1.06);opacity:.58}}
+    @keyframes welcomeGlowB{50%{transform:translate(9%,-6%) scale(1.05);opacity:.5}}
+    @keyframes welcomeGlowC{50%{transform:translate(-6%,9%) scale(1.08);opacity:.44}}
+    @keyframes welcomeGlowD{50%{transform:translate(8%,7%) scale(1.05);opacity:.58}}
+    @media(max-width:520px){
+      header{height:62px;padding:0 18px}.brand{font-size:11px;line-height:1.35}.brand small{font-size:7.5px;margin-top:2px}.deck-count{font-size:7.2px;letter-spacing:.075em;text-align:right;max-width:142px}
+      .screen{min-height:calc(100vh - 126px)}#welcome{padding:30px 32px 42px}.deck-stage{min-height:226px}.deck{width:124px;height:190px}.deck-face::before{inset:12px}.deck-mark{font-size:29px}.deck-mark small{font-size:6.8px;letter-spacing:.23em;margin-top:9px}
+      .eyebrow{font-size:8px;line-height:1.5;letter-spacing:.13em;margin-bottom:13px}h1{font-size:24px;line-height:1.5;letter-spacing:.045em;margin-bottom:14px}.lead{font-size:12.8px;line-height:1.9;margin-bottom:22px;max-width:30em}.privacy{font-size:9.5px;line-height:1.75;margin-top:12px}
+      .primary,.secondary{min-height:44px;font-size:12.5px;line-height:1.45;letter-spacing:.075em}.primary{padding:10px 19px}.welcome-actions{gap:9px}.welcome-actions .secondary{font-size:11.5px}
+      .visual{min-height:430px}.visual-status{left:22px;top:21px;font-size:8px}.card-button{width:min(202px,calc(100% - 90px))}.mix-labels{bottom:15px}.mix-label strong{font-size:11px;letter-spacing:.09em}.mix-label span{font-size:6.8px;margin-top:3px}
+      .reading{padding:32px 32px 42px;justify-content:flex-start}.step{font-size:8px;line-height:1.5;letter-spacing:.09em;margin-bottom:14px}.reading h2{font-size:24px;line-height:1.42;letter-spacing:.045em;margin-bottom:5px}#afterReveal h2{padding-bottom:14px}#afterReveal h2::after{width:48px}.en{font-size:10.5px;line-height:1.55;letter-spacing:.04em}.story{font-size:12.8px;line-height:1.9;margin:21px 0 20px}.question{font-size:17px;line-height:1.75;margin-bottom:18px}.note{min-height:68px;padding:10px 0;font-size:12.5px;line-height:1.75}.save-row{margin-top:10px}.save-link{font-size:11px}.saved{font-size:10px}.actions{gap:8px;margin-top:20px;flex-direction:column;align-items:flex-start}.actions button{width:auto;max-width:100%;font-size:12px}.actions .primary{padding-left:20px;padding-right:20px}.actions .secondary,.actions .text-action{min-height:40px;padding-top:8px;padding-bottom:8px}
+      .complete-wrap{padding:40px 32px}.reading-meta{font-size:8px;margin-bottom:25px}.complete-wrap h2{font-size:27px;line-height:1.42}.complete-wrap>.en{font-size:10.5px;margin-bottom:23px}.summary-colors{margin:22px 0 27px}.summary-color{min-height:72px;padding:12px}.summary-color strong{font-size:14px}.complete-story{font-size:12.8px;line-height:1.9;margin:22px 0}.complete-question{font-size:17px;line-height:1.75;margin:28px 0 24px;padding-top:22px}.complete-note{font-size:12px;line-height:1.8;margin:24px 0;min-height:86px}.reading-signature{font-size:8.5px;margin-top:35px}.reading-signature i{font-size:9.5px}
+      .overview-wrap{padding:34px 22px 46px}.overview-head h2{font-size:26px}.overview-copy{font-size:12.5px;line-height:1.85}.palette-name strong{font-size:16px}
+      .app[data-screen="welcome"] #welcome{background:radial-gradient(ellipse 118% 48% at 50% 70%,rgba(255,252,245,.5),rgba(255,252,245,.1) 70%,transparent 90%)}.app[data-screen="welcome"] .ambient i{filter:blur(32px)}.app[data-screen="welcome"] .ambient .g1{width:82%;height:44%;right:-28%;top:-4%}.app[data-screen="welcome"] .ambient .g2{width:88%;height:48%;left:-38%;bottom:-8%}.app[data-screen="welcome"] .ambient .g3{width:74%;height:42%;left:30%;top:38%}.app[data-screen="welcome"] .ambient::before{width:76%;height:42%;left:-30%;top:0}
+    }
     @media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.spectrum-group.reveal-pending{opacity:1!important;transform:none!important}}
   </style>
 </head>
