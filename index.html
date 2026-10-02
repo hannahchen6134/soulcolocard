@@ -209,7 +209,7 @@
           <div class="hidden" id="afterReveal">
             <h2 id="readingZh"></h2><div class="en" id="readingEn"></div><p class="story" id="readingStory"></p><p class="story-hint">點選色票，可看完整故事</p><p class="question" id="readingQuestion"></p>
           </div>
-          <div class="actions draw-actions hidden" id="drawActions"><button class="primary" id="addCard"><span>加入第二張</span><small>開始混色儀式</small></button><button class="text-action" id="restartReading">重新開始</button></div>
+          <div class="actions draw-actions hidden" id="drawActions"><button class="primary" id="addCard"><span>抽第二張</span><small>開始混色儀式</small></button><button class="text-action" id="restartReading">重新開始</button></div>
         </article>
       </section>
 
@@ -595,7 +595,7 @@ const CARDS = [
       $('beforeReveal').classList.add('hidden'); $('afterReveal').classList.remove('hidden'); $('drawActions').classList.remove('hidden');
       const mixed=state.selected.length===2;
       $('visualStatus').classList.add('hidden');$('stepText').classList.add('hidden');
-      $('addCard').innerHTML='<span>加入第二張</span><small>開始混色儀式</small>';$('addCard').disabled=mixed;$('addCard').classList.toggle('hidden',mixed);$('restartReading').className='text-action';
+      $('addCard').innerHTML='<span>抽第二張</span><small>開始混色儀式</small>';$('addCard').disabled=mixed;$('addCard').classList.toggle('hidden',mixed);$('restartReading').className='text-action';
       if(mixed)clearFirstKeepsake();state.busy=false;
       renderLabels();renderRitualCards();startBlendAnimation(state.selected);
       playEditorialReveal(document.querySelector('.reading'));
