@@ -238,7 +238,7 @@
         </div>
         <article class="reading">
           <div class="step" id="stepText">STEP 01 · 翻開牌卡</div>
-          <div id="beforeReveal"><h2 id="cardTitle">停一下，準備好再翻牌</h2><p class="lead">色票已經在這裡。點選牌面，看看此刻遇見的顏色。</p></div>
+          <div id="beforeReveal"><h2 id="cardTitle">深呼吸，準備好再翻牌</h2><p class="lead">色票已經在這裡。點選牌面，看看此刻遇見的顏色。</p></div>
           <div class="hidden" id="afterReveal">
             <h2 id="readingZh"></h2><div class="en" id="readingEn"></div><p class="story" id="readingStory"></p><p class="story-hint">點選色票，可看完整故事</p><p class="question" id="readingQuestion"></p>
           </div>
@@ -649,7 +649,7 @@ const CARDS = [
       $('ritualStack').classList.add('hidden');$('ritualHint').classList.add('hidden');$('cardButton').classList.remove('hidden','revealed','is-appearing');void $('cardButton').offsetWidth;$('cardButton').classList.add('is-appearing');$('cardButton').setAttribute('aria-label','翻開牌卡');
       $('cardFront').setAttribute('aria-hidden','true');$('frontZh').textContent='';$('frontEn').textContent='';$('frontHex').textContent='';$('frontDate').textContent='';
       $('beforeReveal').classList.remove('hidden'); $('afterReveal').classList.add('hidden'); $('drawActions').classList.add('hidden'); $('mixLabels').classList.add('hidden');
-      $('cardTitle').textContent=state.selected.length===0?'停一下，準備好再翻牌':'第二張已經抽出';$('beforeReveal').querySelector('.lead').textContent=state.selected.length===0?'色票已經在這裡。點選牌面，看看此刻遇見的顏色。':'第一張會留在這裡。點選牌面，翻開第二張顏色。';
+      $('cardTitle').textContent=state.selected.length===0?'深呼吸，準備好再翻牌':'第二張已經抽出';$('beforeReveal').querySelector('.lead').textContent=state.selected.length===0?'色票已經在這裡。點選牌面，看看此刻遇見的顏色。':'第一張會留在這裡。點選牌面，翻開第二張顏色。';
       $('visualStatus').classList.remove('hidden');$('visualStatus').textContent='CARD '+String(state.selected.length+1).padStart(2,'0')+' · WAITING TO REVEAL';
       $('stepText').classList.remove('hidden');$('stepText').textContent='第 '+(state.selected.length+1)+' 張／最多 2 張 · 翻開牌卡';
       const readingPanel=document.querySelector('.reading');readingPanel.classList.toggle('second-ready',state.selected.length===1);readingPanel.classList.remove('second-shuffling');
