@@ -48,6 +48,7 @@
     .primary{background:var(--coffee);color:#fff;box-shadow:0 10px 28px rgba(90,60,40,.18)}.secondary{background:rgba(255,252,246,.34);color:var(--coffee);border-color:rgba(90,60,40,.35)}
     .primary:hover{background:var(--coffee-hover)}.primary:hover,.secondary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(90,60,40,.2)}.primary:disabled{opacity:.45;cursor:default;transform:none;box-shadow:none}button:not(.card-button):focus-visible,textarea:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid rgba(141,96,40,.46);outline-offset:4px}.card-button:focus-visible{outline:none}.card-button:focus-visible .face{box-shadow:0 0 0 3px rgba(184,144,74,.62),0 18px 48px rgba(0,0,0,.38)}
     .deck-stage{display:grid;place-items:center;min-height:480px;position:relative}
+    .deck-stage:not(.is-user-shuffling)::after{content:"";position:absolute;width:min(320px,34vw);aspect-ratio:1;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(238,204,158,.16),rgba(238,204,158,0) 68%);filter:blur(14px);opacity:.42;animation:deckAuraBreath 14s ease-in-out 1.4s infinite;z-index:0}
     .soft-orbit{position:absolute;width:min(470px,44vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(192,153,112,.24),rgba(192,153,112,0) 68%);animation:orbit 16s ease-in-out infinite}
     .deck{--shuffle-x:clamp(48px,6vw,70px);width:220px;height:336px;position:relative;perspective:900px;transform-style:preserve-3d;filter:drop-shadow(0 28px 22px rgba(47,30,19,.2)) drop-shadow(0 5px 5px rgba(34,21,13,.2))}.deck::before,.deck::after{content:"";position:absolute;inset:0;border-radius:18px;border:1px solid rgba(245,224,189,.24);box-shadow:inset 0 1px rgba(255,255,255,.16),inset 1px 0 rgba(255,255,255,.07),inset 0 -20px 30px rgba(0,0,0,.22),0 9px 18px rgba(43,28,18,.14);will-change:transform}.deck::before{background:radial-gradient(circle at 36% 24%,rgba(255,239,211,.1),transparent 32%),linear-gradient(150deg,#786b5f,#4b413a);transform:translate(-18px,16px) rotate(-6deg) scale(.986);opacity:.92;animation:shuffleLeft 12s .35s cubic-bezier(.45,.05,.25,1) infinite}.deck::after{background:radial-gradient(circle at 68% 22%,rgba(255,239,211,.08),transparent 30%),linear-gradient(150deg,#62554c,#302823);transform:translate(18px,13px) rotate(6deg) scale(.986);opacity:.88;animation:shuffleRight 12s .65s cubic-bezier(.45,.05,.25,1) infinite}
     .deck-face{position:absolute;inset:0;z-index:2;border-radius:18px;background:radial-gradient(ellipse 72% 48% at 47% 31%,rgba(246,219,174,.3),transparent 54%),radial-gradient(circle at 82% 12%,rgba(255,247,226,.08),transparent 27%),linear-gradient(118deg,rgba(255,255,255,.1),transparent 31%),linear-gradient(152deg,#1e1714 3%,#4a392e 58%,#281e19);border:1px solid rgba(248,226,188,.42);box-shadow:0 1px 0 rgba(255,255,255,.18),0 4px 9px rgba(32,20,12,.24),0 24px 42px rgba(43,28,18,.2),inset 1px 1px rgba(255,255,255,.13),inset -1px -1px rgba(18,11,8,.42),inset 0 -24px 38px rgba(16,10,7,.2);display:grid;place-items:center;color:#e8d6b7;text-align:center;transform:translateZ(12px);overflow:hidden;will-change:transform;animation:shuffleFace 12s .35s cubic-bezier(.45,.05,.25,1) infinite}.deck-face::before{content:"";position:absolute;inset:15px;border:1px solid rgba(232,214,183,.46);border-radius:11px;box-shadow:0 0 0 1px rgba(44,31,23,.28),inset 0 1px rgba(255,248,230,.08),inset 0 0 22px rgba(238,216,177,.04)}.deck-face::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.25'/%3E%3C/svg%3E"),linear-gradient(112deg,transparent 31%,rgba(255,244,220,.28) 47%,transparent 61%),repeating-linear-gradient(88deg,rgba(255,255,255,.025) 0 1px,transparent 1px 5px);background-size:160px 160px,100% 100%,100% 100%;mix-blend-mode:soft-light}.deck-mark{position:relative;z-index:1;font-size:22px;font-weight:300;text-shadow:0 2px 18px rgba(0,0,0,.28)}.deck-mark small{display:block;font:8px/1.8 Georgia,serif;letter-spacing:.22em;margin-top:12px}
@@ -124,6 +125,9 @@
     @media(max-width:620px){.spectrum-group{margin-bottom:42px}.spectrum-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.reading-meta{margin-bottom:32px}.summary-colors{gap:1px}}
     @media(max-width:520px){.complete-wrap{padding:48px 32px}.complete-actions .secondary,.complete-actions .text-action{width:auto}.reading-signature{align-items:flex-end}.spectrum-heading h3{font-size:18px}}
     @keyframes editorialRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes deckAuraBreath{0%,100%{opacity:.28;transform:scale(.92)}50%{opacity:.62;transform:scale(1.08)}}
+    @keyframes mixNameReveal{from{opacity:0;transform:translateX(-8px);filter:blur(1px)}to{opacity:1;transform:translateX(0);filter:blur(0)}}
+    @keyframes mixCrossReveal{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
     @keyframes ruleUnfold{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
     @keyframes quietAppear{from{opacity:0}to{opacity:1}}
     @keyframes cardSoftAppear{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
@@ -137,7 +141,10 @@
     #welcome.active .intro>h1{animation:editorialRise 1s .12s cubic-bezier(.22,.7,.2,1) both}
     #welcome.active .intro>.lead{animation:editorialRise .95s .25s ease-out both}
     #welcome.active .welcome-actions{animation:editorialRise .9s .38s ease-out both}
-    #welcome.active .deck{animation:editorialRise 1.15s .16s cubic-bezier(.22,.7,.2,1) both}
+    #welcome.active .deck{animation:editorialRise 1.15s .16s cubic-bezier(.22,.7,.2,1) both;z-index:1}
+    .reading.is-entering #afterReveal h2 .mix-name{display:inline-block;animation:mixNameReveal .8s cubic-bezier(.22,.7,.2,1) both}
+    .reading.is-entering #afterReveal h2 .mix-name:nth-of-type(2){animation-delay:.16s}
+    .reading.is-entering #afterReveal h2 .mix-cross{animation:mixCrossReveal .55s .1s ease-out both}
     #afterReveal h2{position:relative;padding-bottom:17px}
     #afterReveal h2::after{content:"";position:absolute;left:0;bottom:0;width:64px;height:1px;background:var(--gold);transform-origin:left center}
     .reading.is-entering .step,.reading.is-entering #beforeReveal h2,.reading.is-entering #beforeReveal .lead,.reading.is-entering #beforeReveal .primary,.reading.is-entering #afterReveal h2,.reading.is-entering #afterReveal .en,.reading.is-entering #afterReveal .story,.reading.is-entering #afterReveal .question,.reading.is-entering #afterReveal .actions{animation:editorialRise .9s cubic-bezier(.22,.7,.2,1) both}
@@ -205,6 +212,8 @@
     .reading.second-shuffling::before{content:'第二張正在洗牌';opacity:.72}
     @media(max-width:520px){.reading.second-ready,.reading.second-shuffling{min-height:84px;padding-top:22px;padding-bottom:22px}.reading.second-ready::before,.reading.second-shuffling::before{font-size:10px}}
     .mix-story{display:flex;flex-direction:column;gap:0;margin-top:27px;margin-bottom:26px;white-space:normal}.mix-story .story-block{position:relative;display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;padding:0 0 24px}.mix-story .story-block+.story-block{padding-top:24px;border-top:1px solid rgba(126,98,73,.16)}.mix-story .story-block::before{content:"";padding-top:3px;color:#a67b42;font:9px/1.4 Georgia,serif;letter-spacing:.12em}.mix-story .story-block:nth-child(1)::before{content:"色彩對話"}.mix-story .story-block:nth-child(2)::before{content:"兩色相遇"}.mix-story .story-block:nth-child(3)::before{content:"原本提問"}.mix-story .story-block:nth-child(4)::before{content:"可以留意"}.mix-story .story-copy{display:block;max-width:34ch}.mix-story .story-block:first-child .story-copy{font-size:1.08em;color:#55483e}.mix-story .story-block:last-child .story-copy{color:#76675a}.mix-story+.story-hint{margin-top:-5px}.ritual-card:nth-child(2){animation-delay:.16s}@media(max-width:520px){.mix-story{margin-top:23px;margin-bottom:22px}.mix-story .story-block{grid-template-columns:58px minmax(0,1fr);gap:12px;padding-bottom:22px}.mix-story .story-block+.story-block{padding-top:22px}.mix-story .story-block::before{font-size:8px;letter-spacing:.08em}.mix-story .story-copy{max-width:25ch}.mix-story .story-block:first-child .story-copy{font-size:1.06em}}
+    #draw:has(.reading.second-shuffling) #blendCanvas{opacity:0}
+    @media(max-width:520px){.reading h2{font-size:18px;letter-spacing:.025em}.reading .question{font-size:14px;line-height:1.75}.mix-story .story-copy{font-size:11px;line-height:1.9}.mix-story .story-block:first-child .story-copy{font-size:11.4px}.mix-story .story-block{padding-bottom:18px}.mix-story .story-block+.story-block{padding-top:18px}}
   </style>
 </head>
 <body>
@@ -242,20 +251,7 @@
           <div class="hidden" id="afterReveal">
             <h2 id="readingZh"></h2><div class="en" id="readingEn"></div><p class="story" id="readingStory"></p><p class="story-hint">點選色票，可看完整故事</p><p class="question" id="readingQuestion"></p>
           </div>
-          <div class="actions draw-actions hidden" id="drawActions"><button class="primary" id="addCard"><span>抽第二張</span><small>開始混色儀式</small></button><button class="primary hidden" id="shareStory">分享限時動態</button><button class="text-action" id="restartReading">重新開始</button></div>
-        </article>
-      </section>
-
-      <section class="screen" id="complete" aria-labelledby="completeTitle">
-        <article class="complete-wrap">
-          <div class="reading-meta"><span id="readingDate"></span><span id="readingNumber"></span></div>
-          <div class="eyebrow">YOUR COLOR NOTE</div>
-          <h2 id="completeTitle"></h2><div class="en" id="completeEn"></div>
-          <div class="summary-colors" id="summaryColors"></div>
-          <p class="complete-story" id="completeStory"></p><p class="complete-question" id="completeQuestion"></p>
-          <div class="complete-actions"><button class="primary" id="saveReading">儲存色彩筆記</button><button class="secondary" id="downloadReading">下載圖卡</button><button class="secondary" id="copySummary">複製文字</button><button class="text-action" id="restartComplete">重新開始</button></div>
-          <p class="storage-note">筆記只保存在這台裝置的瀏覽器中，不會上傳。</p><div class="copy-status" id="copyStatus" role="status" aria-live="polite"></div>
-          <div class="reading-signature"><span>SOUL COLOR · 內在色彩卡</span><i>留下一個觀看自己的角度</i></div>
+          <div class="actions draw-actions hidden" id="drawActions"><button class="primary" id="addCard"><span>抽第二張</span><small>看看兩種顏色的對話</small></button><button class="primary hidden" id="shareStory">分享限時動態</button><button class="text-action" id="restartReading">重新開始</button></div>
         </article>
       </section>
 
@@ -660,13 +656,13 @@ const CARDS = [
       $('stepText').classList.remove('hidden');$('stepText').textContent='第 '+(state.selected.length+1)+' 張／最多 2 張 · 翻開牌卡';
       const readingPanel=document.querySelector('.reading');readingPanel.classList.toggle('second-ready',state.selected.length===1);readingPanel.classList.remove('second-shuffling');
       const autoRevealSecond=state.selected.length===1&&state.autoRevealSecond;state.autoRevealSecond=false;
-      if(state.selected.length===1)renderFirstKeepsake();else clearFirstKeepsake();showScreen('draw');playEditorialReveal(readingPanel);drawWaitingBackground();
+      clearFirstKeepsake();showScreen('draw');playEditorialReveal(readingPanel);drawWaitingBackground();
       if(autoRevealSecond){revealCard();$('announcer').textContent='第二張牌已浮現，兩張色票正在相遇';return;}
       $('announcer').textContent='第 '+(state.selected.length+1)+' 張牌已抽出，請翻開牌卡';
       window.scrollTo({top:0,behavior:reduced.matches?'auto':'smooth'}); setTimeout(()=>$('cardButton').focus(),80);
     }
     function beginSecondShuffle(){
-      if(state.busy||state.selected.length!==1)return;state.busy=true;state.autoRevealSecond=true;state.revealed=false;state.current=null;clearFirstKeepsake();renderFirstKeepsake();$('cardButton').classList.add('hidden');$('afterReveal').classList.add('hidden');$('drawActions').classList.add('hidden');$('beforeReveal').classList.remove('hidden');$('cardTitle').textContent='第二張正在洗牌';$('beforeReveal').querySelector('.lead').textContent='第一張會留在這裡。稍等一下，讓第二張牌浮現。';$('stepText').classList.remove('hidden');$('stepText').textContent='第 2 張／短暫洗牌';$('visualStatus').classList.remove('hidden');$('visualStatus').textContent='CARD 02 · SHUFFLING';const readingPanel=document.querySelector('.reading');readingPanel.classList.remove('second-ready');readingPanel.classList.add('second-shuffling');startBlendAnimation(state.selected);playEditorialReveal(readingPanel);$('announcer').textContent='正在為第二張牌洗牌';state.shuffleTimer=setTimeout(prepareDraw,reduced.matches?80:820);
+      if(state.busy||state.selected.length!==1)return;state.busy=true;state.autoRevealSecond=true;state.revealed=false;state.current=null;clearFirstKeepsake();$('cardButton').classList.add('hidden');$('afterReveal').classList.add('hidden');$('drawActions').classList.add('hidden');$('beforeReveal').classList.remove('hidden');$('cardTitle').textContent='第二張正在洗牌';$('beforeReveal').querySelector('.lead').textContent='第一張會留在這裡。稍等一下，讓第二張牌浮現。';$('stepText').classList.remove('hidden');$('stepText').textContent='第 2 張／短暫洗牌';$('visualStatus').classList.remove('hidden');$('visualStatus').textContent='CARD 02 · SHUFFLING';const readingPanel=document.querySelector('.reading');readingPanel.classList.remove('second-ready');readingPanel.classList.add('second-shuffling');startBlendAnimation(state.selected);playEditorialReveal(readingPanel);$('announcer').textContent='正在為第二張牌洗牌';state.shuffleTimer=setTimeout(prepareDraw,reduced.matches?80:820);
     }
     function revealCard(){
       if(state.revealed||state.busy||!state.current)return;state.busy=true;document.querySelector('.reading').classList.remove('second-ready','second-shuffling');renderCardFace(state.current);$('cardFront').removeAttribute('aria-hidden');state.revealed=true;state.selected.push(state.current);
@@ -676,12 +672,12 @@ const CARDS = [
       $('beforeReveal').classList.add('hidden'); $('afterReveal').classList.remove('hidden'); $('drawActions').classList.remove('hidden');
       const mixed=state.selected.length===2;
       $('visualStatus').classList.add('hidden');$('stepText').classList.add('hidden');
-      $('addCard').innerHTML='<span>抽第二張</span><small>開始混色儀式</small>';$('addCard').disabled=mixed;$('addCard').classList.toggle('hidden',mixed);$('shareStory').classList.toggle('hidden',!mixed);$('restartReading').className='text-action';
+      $('addCard').innerHTML='<span>抽第二張</span><small>看看兩種顏色的對話</small>';$('addCard').disabled=mixed;$('addCard').classList.toggle('hidden',mixed);$('shareStory').classList.toggle('hidden',!mixed);$('restartReading').className='text-action';
       if(mixed)clearFirstKeepsake();state.busy=false;
       renderLabels();renderRitualCards();startBlendAnimation(state.selected);
       playEditorialReveal(document.querySelector('.reading'));
       $('announcer').textContent='翻開 '+state.current.zh+'，問題：'+state.current.q;
-      if(matchMedia('(max-width:860px)').matches){$('scrollCue').textContent=mixed?'閱讀混色訊息 ↓':'閱讀色彩訊息 ↓';$('scrollCue').classList.remove('hidden');}
+      if(matchMedia('(max-width:860px)').matches){$('scrollCue').textContent=mixed?'往下看兩色對話 ↓':'閱讀色彩訊息 ↓';$('scrollCue').classList.remove('hidden');}
     }
     function renderLabels(){
       $('mixLabels').innerHTML='';$('mixLabels').classList.add('hidden');
@@ -710,10 +706,9 @@ const CARDS = [
     $('filterRow').addEventListener('click',event=>{const button=event.target.closest('[data-filter]');if(!button)return;state.overviewFilter=button.dataset.filter;document.querySelectorAll('.filter-chip').forEach(chip=>chip.classList.toggle('active',chip===button));renderOverview($('paletteSearch').value);requestAnimationFrame(observeSpectrumGroups);});
     $('paletteList').addEventListener('click',event=>{const button=event.target.closest('[data-card-id]');if(button)openCardDialog(CARDS.find(card=>card.id===button.dataset.cardId));});
     $('ritualStack').addEventListener('click',event=>{const button=event.target.closest('[data-card-id]');if(button)openCardDialog(CARDS.find(card=>card.id===button.dataset.cardId));});
-    $('summaryColors').addEventListener('click',event=>{const button=event.target.closest('[data-card-id]');if(button)openCardDialog(CARDS.find(card=>card.id===button.dataset.cardId));});
     $('visual').addEventListener('click',event=>{const button=event.target.closest('.first-card-keepsake');if(button)openCardDialog(CARDS.find(card=>card.id===button.dataset.cardId));});
     $('cardButton').addEventListener('click',()=>state.revealed?openCardDialog(state.current):revealCard()); $('scrollCue').addEventListener('click',()=>{$('readingZh').scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});$('scrollCue').classList.add('hidden');});
-    $('addCard').addEventListener('click',beginSecondShuffle);$('shareStory').addEventListener('click',shareStoryImage);$('saveReading').addEventListener('click',saveReading);$('downloadReading').addEventListener('click',downloadReadingCard);$('copySummary').addEventListener('click',copySummary);$('restartComplete').addEventListener('click',restartSession);
+    $('addCard').addEventListener('click',beginSecondShuffle);$('shareStory').addEventListener('click',shareStoryImage);
     $('restartReading').addEventListener('click',restartSession);
     $('dialogClose').addEventListener('click',closeCardDialog);$('cardDialog').addEventListener('click',event=>{if(event.target===$('cardDialog'))closeCardDialog();});$('storyShareClose').addEventListener('click',()=>{$('storyShareDialog').close();});$('storyShareDialog').addEventListener('click',event=>{if(event.target===$('storyShareDialog'))$('storyShareDialog').close();});
     window.addEventListener('resize',()=>{clearTimeout(state.resizeTimer);state.resizeTimer=setTimeout(()=>{if(state.revealed){renderRitualCards();startBlendAnimation(state.selected);}else drawWaitingBackground();},180)});
