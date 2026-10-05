@@ -189,8 +189,8 @@
     .en{font-size:10.5px;letter-spacing:.065em}
     .story{max-width:31em;font-size:15px;line-height:1.9;margin:26px 0 22px}
     .question{font-size:clamp(18px,1.7vw,22px);line-height:1.68}
-    .card-title strong{font-size:clamp(18px,1.65vw,24px);letter-spacing:.085em}
-    .card-title em{font-size:9px;letter-spacing:.095em;margin-top:5px}
+    .card-title strong{font-size:clamp(16px,1.45vw,21px);letter-spacing:.09em}
+    .card-title em{font-size:8.5px;letter-spacing:.105em;margin-top:5px}
     .card-band-tex{opacity:.18}
     .card-band-glass{background:linear-gradient(148deg,rgba(255,255,255,.17),transparent 48%,rgba(255,239,211,.05))}
     .front{background:linear-gradient(145deg,#fffdf9 0%,#f5efe6 100%);box-shadow:0 1px 0 rgba(255,255,255,.6),0 12px 28px rgba(28,18,12,.24),inset 0 0 0 1px rgba(122,91,57,.08)}
@@ -202,7 +202,7 @@
     .draw-actions{margin-top:20px;padding-top:18px}
     @media(max-width:520px){
       h1{font-size:28px;line-height:1.42}.lead{font-size:13.5px;line-height:1.9}
-      .visual{min-height:410px}.reading{padding:40px 32px 48px}.reading h2{font-size:23px;line-height:1.42}.en{font-size:9.5px}.story{font-size:15px;line-height:1.9;margin:23px 0 21px}.question{font-size:17px;line-height:1.72}.card-title strong{font-size:16.5px}.card-title em{font-size:7px}.card-band-tex{opacity:.16}.draw-actions{margin-top:16px;padding-top:14px}
+      .visual{min-height:410px}.reading{padding:40px 32px 48px}.reading h2{font-size:23px;line-height:1.42}.en{font-size:9.5px}.story{font-size:15px;line-height:1.9;margin:23px 0 21px}.question{font-size:17px;line-height:1.72}.card-title strong{font-size:15px}.card-title em{font-size:6.7px}.card-band-tex{opacity:.16}.draw-actions{margin-top:16px;padding-top:14px}
     }
     /* 第二張直接留在混色舞台，不再閃出一個完整閱讀頁 */
     .reading.second-ready,.reading.second-shuffling{justify-content:center;text-align:center}
@@ -213,6 +213,16 @@
     .reading.second-shuffling::before{content:'第二張正在洗牌';opacity:.72}
     @media(max-width:520px){.reading.second-ready,.reading.second-shuffling{min-height:84px;padding-top:22px;padding-bottom:22px}.reading.second-ready::before,.reading.second-shuffling::before{font-size:10px}}
     .mix-story{display:flex;flex-direction:column;gap:0;margin-top:27px;margin-bottom:26px;white-space:normal}.mix-story .story-block{position:relative;display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;padding:0 0 24px}.mix-story .story-block+.story-block{padding-top:24px;border-top:1px solid rgba(126,98,73,.16)}.mix-story .story-block::before{content:"";padding-top:3px;color:#a67b42;font:9px/1.4 Georgia,serif;letter-spacing:.12em}.mix-story .story-block:nth-child(1)::before{content:"第一張牌"}.mix-story .story-block:nth-child(2)::before{content:"第二張牌"}.mix-story .story-block:nth-child(3)::before{content:"融合後的意義"}.mix-story .story-block:nth-child(4)::before{content:"提醒你看見"}.mix-story .story-copy{display:block;max-width:34ch}.mix-story .story-block:nth-child(-n+2) .story-copy{font-size:1em;color:#55483e}.mix-story .story-block:nth-child(3) .story-copy{font-size:1.08em;color:#55483e}.mix-story .story-block:last-child .story-copy{color:#76675a}.mix-story+.story-hint{margin-top:-5px}.ritual-card:nth-child(2){animation-delay:.16s}@media(max-width:520px){.mix-story{margin-top:23px;margin-bottom:22px}.mix-story .story-block{grid-template-columns:58px minmax(0,1fr);gap:12px;padding-bottom:22px}.mix-story .story-block+.story-block{padding-top:22px}.mix-story .story-block::before{font-size:8px;letter-spacing:.08em}.mix-story .story-copy{max-width:25ch}.mix-story .story-block:nth-child(-n+2) .story-copy{font-size:1.06em}.mix-story .story-block:nth-child(3) .story-copy{font-size:1.08em}}
+    /* 結果頁編輯式閱讀節奏：先讓兩張牌安靜落地，再把視線帶到融合段 */
+    .mix-story .story-block{animation:mixStoryReveal .72s cubic-bezier(.22,.7,.2,1) both}
+    .mix-story .story-block:nth-child(2){animation-delay:.1s}
+    .mix-story .story-block:nth-child(3){animation-delay:.2s;border-top-color:rgba(166,123,66,.3);padding-top:29px}
+    .mix-story .story-block:nth-child(3)::before{color:#9b713c;font-size:10px}
+    .mix-story .story-block:nth-child(4){animation-delay:.3s}
+    @keyframes mixStoryReveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    .ritual-card .card-title strong{font-size:14px;letter-spacing:.065em}
+    .ritual-card .card-title em{font-size:6.8px;letter-spacing:.065em}
+    @media(max-width:520px){.ritual-card .card-title strong{font-size:11px}.ritual-card .card-title em{font-size:5.8px}}
     #draw:has(.reading.second-shuffling) #blendCanvas{opacity:0}
     @media(max-width:520px){.reading h2{font-size:18px;letter-spacing:.025em}.reading .question{font-size:14px;line-height:1.75}.mix-story .story-copy{font-size:11px;line-height:1.9}.mix-story .story-block:first-child .story-copy{font-size:11.4px}.mix-story .story-block{padding-bottom:18px}.mix-story .story-block+.story-block{padding-top:18px}}
     @media(max-width:520px){.mix-story .story-block{display:block;padding:0 0 22px}.mix-story .story-block+.story-block{padding-top:20px}.mix-story .story-block::before{display:block;margin:0 0 8px;padding:0;font-size:9px;line-height:1.4;letter-spacing:.16em}.mix-story .story-copy,.mix-story .story-block:first-child .story-copy{display:block;max-width:none;font-size:14px;line-height:1.9}}
