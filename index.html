@@ -680,7 +680,7 @@ const CARDS = [
       clearTimeout(state.scrollTimer);clearTimeout(state.shuffleTimer);state.busy=false;state.current=randomCard();state.revealed=false;$('scrollCue').classList.add('hidden');
       $('ritualStack').classList.add('hidden');$('ritualHint').classList.add('hidden');$('cardButton').classList.remove('hidden','revealed','is-appearing');void $('cardButton').offsetWidth;$('cardButton').classList.add('is-appearing');$('cardButton').setAttribute('aria-label','翻開牌卡');
       $('cardFront').setAttribute('aria-hidden','true');$('frontZh').textContent='';$('frontEn').textContent='';$('frontHex').textContent='';$('frontDate').textContent='';
-      $('beforeReveal').classList.remove('hidden'); $('afterReveal').classList.add('hidden'); $('drawActions').classList.add('hidden'); $('mixLabels').classList.add('hidden');
+      $('beforeReveal').classList.remove('hidden'); $('afterReveal').classList.add('hidden'); $('drawActions').classList.add('hidden'); $('mixLabels').classList.add('hidden'); $('portraitBridge').classList.add('hidden');
       $('cardTitle').textContent=state.selected.length===0?'深呼吸，準備好再翻牌':'第二張已經抽出';$('beforeReveal').querySelector('.lead').textContent=state.selected.length===0?'色票已經在這裡。點選牌面，看看此刻遇見的顏色。':'第一張會留在這裡。點選牌面，翻開第二張顏色。';
       $('visualStatus').classList.remove('hidden');$('visualStatus').textContent='CARD '+String(state.selected.length+1).padStart(2,'0')+' · WAITING TO REVEAL';
       $('stepText').classList.remove('hidden');$('stepText').textContent='第 '+(state.selected.length+1)+' 張／最多 2 張 · 翻開牌卡';
